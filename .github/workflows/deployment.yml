@@ -1,8 +1,8 @@
 name: Deploment Pipeline
 
 on:
-  # push:
-  #   branches: [ master ]
+  push:
+    branches: [ master ]
   # pull_request:
   #   branches: [ master ]
   workflow_dispatch:
@@ -22,8 +22,8 @@ jobs:
       uses: azure/docker-login@v1
       with:
         login-server: albverhoy.azurecr.io
-        username: ${{ secrets.AZURECR.username }}
-        password: ${{ secrets.AZURECR.password }}
+        username: ${{ secrets.AZURECR_USERNAME}}
+        password: ${{ secrets.AZURECR_PASSWORD }}
     - run: |
         docker build . -t albverhoy.azurecr.io/consulta-celda:${{ github.sha }}
         docker push albverhoy.azurecr.io/consulta-celda:${{ github.sha }}     
