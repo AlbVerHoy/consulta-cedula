@@ -1,0 +1,35 @@
+name: Deploment Pipeline
+
+on:
+  # push:
+  #   branches: [ master ]
+  # pull_request:
+  #   branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Docker login
+      uses: azure/docker-login@v1
+      with:
+        login-server: albverhoy.azurecr.io
+        username: ${{ secrets.AZURECR.username }}
+        password: ${{ secrets.AZURECR.password }}
+    - run: |
+        docker build . -t albverhoy.azurecr.io/consulta-celda:${{ github.sha }}
+        docker push albverhoy.azurecr.io/consulta-celda:${{ github.sha }}     
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'consulta-celda'
+        images: 'albverhoy.azurecr.io/consulta-celda:${{ github.sha }}'
+        
