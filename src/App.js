@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './styles/main.css';
 import CedulaTabs from './components/CedulaTabs/CedulaTabs';
 import TextBody from './components/TextArea/TextBody';
-import Footer from './Footer/Footer';
+import Footer from './components/Footer/Footer';
 
 const theme = createTheme({
 	status: {
