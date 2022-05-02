@@ -60,7 +60,7 @@ const Footer = () => {
 						/>
 					</Stack>
 					<Stack flex="2" sx={{ paddingTop: '2%' }}>
-						<p style={paragraphHeadStyles}>Enlaces</p>
+						<Box className="paragraph" style={paragraphHeadStyles}>Enlaces</Box>
 						<Stack>
 							<Link href="#" underline="hover" color="#fff" sx={linkStyles}>
 								Participa
@@ -77,7 +77,7 @@ const Footer = () => {
 						</Stack>
 					</Stack>
 					<Stack flex="1.8" sx={{ padding: '1%' }}>
-						<p style={paragraphHeadStyles}>¿Qué es gob.mx?</p>
+						<Box className="paragraph"style={paragraphHeadStyles}>¿Qué es gob.mx?</Box>
 						<Box className="paragraph" style={paragraphStyles}>
 							Es el portal único de trámites, información y participación
 							ciudadana.{' '}
@@ -118,7 +118,7 @@ const Footer = () => {
 							Denuncia contra servidores públicos
 						</Link>
 						<Stack minHeight={20}></Stack>
-						<p style={paragraphStyles}>Síguenos en:</p>
+						<Box className="paragraph" style={paragraphStyles}>Síguenos en:</Box>
 						<Stack direction="row" spacing={2}>
 							<Link href="https://www.facebook.com/gobmexico/" underline="none" color="white">
 								<FacebookIcon />

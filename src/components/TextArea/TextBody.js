@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import TextArea from './TextArea';
 
 const TextBody = () => {
@@ -43,20 +44,20 @@ const TextBody = () => {
 						</span>
 					</>,
 					<ul>
-						<li>En primer lugar ingresa al sitio: Consultar Cédula.</li>
-						<li>
+						<li key={1}>En primer lugar ingresa al sitio: Consultar Cédula.</li>
+						<li key={2}>
 							Comienza ingresando los 3 datos que se solicitan: Nombres, primer
 							apellido y segundo apellido.
 						</li>
-						<li>
+						<li key={3}>
 							<span>Luego haz clic en “Consultar”.</span>
 						</li>
-						<li>
+						<li key={4}>
 							Tras presionar Consultar, te llevará a la sección resultados,
 							donde podrás ver el estatus de la cédula perteneciente a los datos
 							ingresados.
 						</li>
-						<li>
+						<li key={5}>
 							También podrás ver en la pestaña de Detalles, todos los datos
 							específicos de la cédula consultada.
 						</li>
@@ -85,19 +86,19 @@ const TextBody = () => {
 					</>,
 					<span>Los requisitos son:</span>,
 					<ul>
-						<li>Acta de nacimiento</li>
-						<li>CURP</li>
-						<li>Certificado de Bachillerato</li>
-						<li>Certificado de Estudios Profesionales</li>
-						<li>Constancia de Liberación de Servicio Social</li>
-						<li>Acta de examen profesional</li>
-						<li>
+						<li key={1}>Acta de nacimiento</li>
+						<li key={2}>CURP</li>
+						<li key={3}>Certificado de Bachillerato</li>
+						<li key={4}>Certificado de Estudios Profesionales</li>
+						<li key={5}>Constancia de Liberación de Servicio Social</li>
+						<li key={6}>Acta de examen profesional</li>
+						<li key={7}>
 							Dos fotografías recientes, tamaño infantil en blanco y negro
 						</li>
-						<li>Título Profesional</li>
-						<li>Recibo de pago de derechos federales</li>
-						<li>Solicitud de registro de Titulo y Expedición de cédula</li>
-						<li>Solicitar Tu Cita para sacar la cedula.</li>
+						<li key={8}>Título Profesional</li>
+						<li key={9}>Recibo de pago de derechos federales</li>
+						<li key={10}>Solicitud de registro de Titulo y Expedición de cédula</li>
+						<li key={11}>Solicitar Tu Cita para sacar la cedula.</li>
 					</ul>,
 					<blockquote>
 						Encuentra todos los pasos en: Tramitar Cédula Profesional.
@@ -157,73 +158,73 @@ const TextBody = () => {
 								#4: Con estudios para niveles de maestría y doctorado
 							</strong>
 						</h3>
-						<p>
+						<Box className="paragraph">
 							<span>
 								Costo por registro de grado académico y expedición de la cédula
 								electrónica para extranjeros y mexicanos
 							</span>{' '}
 							con estudios en México para niveles de maestría y doctorado,
 							equivale a $1,320.22 mxn.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Según el caso que proceda puedes ver el costo que tiene la cédula
 							de extranjería, y, como ya hemos dicho, para el caso presencial
 							debes pagar adicionalmente una compulsa de documentos por hoja de
 							$11.94 mxn.
-						</p>
+						</Box>
 					</>,
 				]}
 			</TextArea>
 			<TextArea title="Trámite de cédula Profesional">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							Ahora que ya conoces tanto los requisitos de documentos, como los
 							requisitos de pagos para poder{' '}
 							<span>hacer tu trámite de sacar tu cédula</span>, te resta saber
 							cuáles son los pasos para obtener tu documento que te identifica
 							como profesional.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							<span>
 								En tal sentido, existen dos formas en las que puedes realizar el
 								trámite de solicitud para disfrutar de este documento. . .
 							</span>
-							<p>
+							<Box className="paragraph">
 								Una de esas formas es la solicitud presencial y otra la
 								solicitud online. . .{' '}
 								<span>A continuación las presentamos:</span>
-							</p>
-						</p>
+							</Box>
+						</Box>
 						<h3>
 							<span>#1: Trámite Presencial </span>
 						</h3>
-						<p>
+						<Box className="paragraph">
 							Los trámites{' '}
 							<span>para la obtención de cédula de forma presencial</span>,
 							incluyen la solicitud de cita, sin embargo, ese aspecto de lo
 							presentaremos en el próximo segmento.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Ahora bien, lo primero es llenar tu solicitud, si no haces una
 							solicitud no tienes cita.
-						</p>
+						</Box>
 						<span>Llenar la solicitud</span>
-						<p>
+						<Box className="paragraph">
 							Este paso es fundamental, porque sin solicitud no tendrás cita,
 							así que no podrás llevar los documentos reunidos.
-						</p>
+						</Box>
 						<span>Ten en cuenta los siguientes pasos:</span>
 						<ul>
-							<li>
+							<li key={1}>
 								Primero, debes pagar el recibo de derechos federales ara que
 								puedes hacer el trámite: Obtén tu recibo aquí.
 							</li>
-							<li>
+							<li key={2}>
 								Luego llena la solicitud de registro y expedición de cédula en:
 								Solicitud de Registro y Expedición de Cédula.
 							</li>
-							<li>
+							<li key={3}>
 								Ya después de llenar esta solicitud debes prepararte para
 								asistir a la cita. A continuación te diremos cómo puedes
 								solicitar tu cita para el trámite presencial: Cita Cedula
@@ -237,43 +238,43 @@ const TextBody = () => {
 								#2: Trámite online para obtener la cédula profesional:
 							</strong>
 						</h3>
-						<p>
+						<Box className="paragraph">
 							La ventaja de hacer el trámite vía online, es que puedes hacerlo
 							de forma rápida, sencilla y segura, sin perder tiempo en
 							trasladarte a una oficina.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Para realizar <span>este tipo de trámite</span>, en primer lugar
 							debes considerar la información con la que debes contar para poder
 							iniciar el trámite, esta información es:
-						</p>
+						</Box>
 						<ul>
-							<li>
+							<li key={1}>
 								<span>Solicitud firmada con e.firma.</span> Ahora bien, esta
 								solicitud firmada con e.firma debe contener:
 								<ul>
-									<li>Tu nombre, lugar y fecha de nacimiento.</li>
-									<li>Tu nacionalidad.</li>
-									<li>Clave Única de Registro de Población (CURP).</li>
-									<li>
+									<li key={1}>Tu nombre, lugar y fecha de nacimiento.</li>
+									<li key={2}>Tu nacionalidad.</li>
+									<li key={3}>Clave Única de Registro de Población (CURP).</li>
+									<li key={4}>
 										Nombre o denominación de la institución que te otorgó el
 										título profesional, y fecha de emisión.
 									</li>
 								</ul>
 							</li>
-							<li>
+							<li key={2}>
 								De igual <span>forma debes tener a la mano</span>, para poder
 								hacer el trámite online, un archivo electrónico en el cual esté:
 								<ul>
-									<li>Título profesional.</li>
-									<li>
+									<li key={1}>Título profesional.</li>
+									<li key={2}>
 										Diploma de especialidad o grado académico, el cual
 										previamente tu institución educativa debió registrar ante la
 										Dirección General de Profesiones.
 									</li>
 								</ul>
 							</li>
-							<li>
+							<li key={3}>
 								<span>
 									También es importante que cuentes con un método de pago
 								</span>
@@ -282,14 +283,14 @@ const TextBody = () => {
 								una tarjeta de crédito y una tarjeta de débito.
 							</li>
 						</ul>
-						<p>
+						<Box className="paragraph">
 							Después de <span>tener estos requisitos a la mano</span>, para
 							proceder al trámite en sí, es necesario que tengas en cuenta los
 							siguientes pasos con los que de una forma simple y rápida podrás
 							contar con tu cédula profesional:
-						</p>
+						</Box>
 						<ul>
-							<li>
+							<li key={1}>
 								Lo primero que debes hacer, es ingresar a la plataforma oficial
 								para tu registro de profesionales:{' '}
 								<a
@@ -298,21 +299,21 @@ const TextBody = () => {
 									https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action
 								</a>
 							</li>
-							<li>
+							<li key={2}>
 								Hay dos formas de iniciar el trámite, puedes hacerlo con:
 								<ul>
-									<li>La Clave Única de Registro de Población (CURP).</li>
-									<li>A través de los datos personales.</li>
+									<li key={1}>La Clave Única de Registro de Población (CURP).</li>
+									<li key={2}>A través de los datos personales.</li>
 								</ul>
 							</li>
-							<li>
+							<li key={3}>
 								Si te decides por los datos personales, necesitarás ingresar tu
 								nombre, primer y segundo apellido.
 							</li>
-							<li>
+							<li key={4}>
 								Luego escoge el método de pago para la obtención de tu cédula.
 							</li>
-							<li>Por último descarga tu cédula.</li>
+							<li key={5}>Por último descarga tu cédula.</li>
 						</ul>
 						Como puedes ver es la forma más conveniente por la facilidad,
 						bastará con tener acceso a internet para poder ingresar a la
@@ -323,33 +324,33 @@ const TextBody = () => {
 			<TextArea title="Cédula profesional Cita">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							Ahora que ya sabes cómo prepararte para la cita presencial, los
 							requisitos y cómo obtener tu solicitud y llenarla,{' '}
 							<span>
 								necesitas conocer los pasos para solicitar tu cita. . .
 							</span>
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Y así en definitiva optar por tu cédula como profesional. Ten en
 							cuenta que esta cita se tramita frente a la oficina de la
 							Secretaría de Educación Pública.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							En el caso de los residentes del Distrito Federal y del área
 							metropolitana, el trámite se puede hacer en las oficinas del
 							Departamento Federal y Expedición de Cédulas, las cuales se
 							encuentran en el sur de la ciudad.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Pero si estás en otra entidad federativa, puedes y debes acudir a
 							las oficinas estatales de la SEP.{' '}
 							<span>
 								A continuación los pasos para la solicitud de tu cita:
 							</span>
-						</p>
+						</Box>
 						<ul>
-							<li>
+							<li key={1}>
 								<span>
 									En primer lugar tienes que ingresar a:{' '}
 									<a href="https://www.citas.sep.gob.mx">
@@ -357,55 +358,55 @@ const TextBody = () => {
 									</a>
 								</span>
 							</li>
-							<li>
+							<li key={2}>
 								Ubica la pestaña “Cita”, Arriba a la derecha, y de las tres
 								opciones que se desplegan haz clic en “Solicitud”.
 							</li>
-							<li>
+							<li key={3}>
 								En el primer campo y el segundo campo, del formulario que
 								encontrarás, debes escoger la segunda opción.
 							</li>
-							<li>
+							<li key={4}>
 								Luego sigue{' '}
 								<span>
 									los pasos del sistema y estarás completando tu solicitud.
 								</span>
 							</li>
-							<li>
+							<li key={5}>
 								<span>
 									Al tener la fecha de la cita, haz el pago correspondiente.
 								</span>
 							</li>
 						</ul>
-						<p>
+						<Box className="paragraph">
 							La cita consiste en una revisión de los documentos que avalan tu
 							solicitud y tendrá una extensión de más o menos una hora y media y
 							dos horas. . .
-						</p>
+						</Box>
 					</>,
 				]}
 			</TextArea>
 			<TextArea title="Tipos de Cédula">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							Para que tengas en cuenta el tipo de cédula que debes solicitar,
 							debes saber que existen dos tipos, y{' '}
 							<span>cada una responde a una serie de condiciones</span>,
 							esencialmente a tu estatus académico.
-						</p>
+						</Box>
 						<span>
 							Recuerda que la cédula de profesionales, avala tu título
 							académico, a eso se debe la distinción en sus tipos.
 						</span>
 						<ul>
-							<li>
+							<li key={1}>
 								En primer lugar, las cédulas de tipo A1: se expiden únicamente
 								para las personas que además de tener una carrera profesional,
 								también cuenten con una especialidad que esté relacionada con la
 								profesión que ejercen o para la cual se han capacitado.
 							</li>
-							<li>
+							<li key={2}>
 								Por otra parte,{' '}
 								<span>el otro tipo de cédula son las tipos C1</span>. Estas se
 								expiden exclusivamente para los profesionales que cuentan con
@@ -419,71 +420,71 @@ const TextBody = () => {
 			<TextArea title="Reposición o Duplicado de cédula">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							La reposición o duplicado de cédula es uno de los conocimientos
 							que necesitas obtener, para esos casos en los que se te haya
 							perdido tu cédula o sencillamente necesites renovarla. En este
 							sentido, existen dos formas de hacer la reposición o duplicado de
 							cédula, a continuación te presentamos cada una de estas opciones:
-						</p>
+						</Box>
 						<h3>
 							<strong>#1: Reposición o duplicado online</strong>
 						</h3>
-						<p>
+						<Box className="paragraph">
 							Los <span>pasos online son muy sencillos y fáciles</span>, no
 							necesitarás ir hasta una oficina, sino que basta con que cuentes
 							con conexión a internet.
-						</p>
+						</Box>
 						<span>Estos son los pasos:</span>
 						<ul>
-							<li>
+							<li key={1}>
 								Ten a la mano tu solicitud con la e.firma, asegúrate de que
 								contenga correctamente los siguientes datos:
 								<ul>
-									<li>Tu nombre, lugar y fecha de nacimiento.</li>
-									<li>También debe tener tu nacionalidad.</li>
-									<li>La Clave Única de Registro de Población (CURP).</li>
+									<li key={1}>Tu nombre, lugar y fecha de nacimiento.</li>
+									<li key={2}>También debe tener tu nacionalidad.</li>
+									<li key={3}>La Clave Única de Registro de Población (CURP).</li>
 								</ul>
 							</li>
-							<li>
+							<li key={2}>
 								De igual forma es importante que tengas el comprobante del pago
 								en línea, dicho pago puedes hacerlo con tarjeta de crédito o de
 								débito.
 							</li>
-							<li>
+							<li key={3}>
 								Con estos requisitos ya podrás ingresar a la página de la
 								Secretaría de Educación Pública, hazlo con el siguiente enlace:
 								https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67
 							</li>
-							<li>Ubica el botón de Trámite en línea.</li>
-							<li>
+							<li key={4}>Ubica el botón de Trámite en línea.</li>
+							<li key={5}>
 								Al llegar al nuevo sitio, tras hacer clic en Trámite en línea,
 								puedes hacer en primer lugar el paso de la búsqueda de la cédula
 								profesional.
 							</li>
-							<li>
+							<li key={6}>
 								Tienes la opción de hacer la búsqueda mediante la introducción
 								de la Clave Única de Registro de Población en el campo en donde
 								es solicitado.
 							</li>
-							<li>
+							<li key={7}>
 								La otra forma de hacer la búsqueda es mediante tus datos
 								personales, con esta opción debes ingresar:{' '}
 								<ul>
-									<li>Nombre</li>
-									<li>Primer apellido.</li>
-									<li>Segundo apellido.</li>
-									<li>Fecha de nacimiento.</li>
-									<li>Sexo</li>
-									<li>Estado</li>
+									<li key={1}>Nombre</li>
+									<li key={2}>Primer apellido.</li>
+									<li key={3}>Segundo apellido.</li>
+									<li key={4}>Fecha de nacimiento.</li>
+									<li key={5}>Sexo</li>
+									<li key={6}>Estado</li>
 								</ul>
 							</li>
-							<li>
+							<li key={8}>
 								<span>Después de haber introducido los datos</span>, de acuerdo
 								a la forma de búsqueda de tu preferencia, debes marcar la
 								casilla del Captcha y luego hacer clic en Continuar.
 							</li>
-							<li>
+							<li key={9}>
 								El sistema te guiará al siguiente paso, y luego hacia el método
 								de pago,{' '}
 								<span>
@@ -495,7 +496,7 @@ const TextBody = () => {
 						<h3>
 							<strong>#2: Reposición o duplicado presencial </strong>
 						</h3>
-						<p>
+						<Box className="paragraph">
 							La opción de{' '}
 							<span>
 								la reposición o duplicado presencial te llevará a solicitar una
@@ -504,50 +505,50 @@ const TextBody = () => {
 							en la que debes presentar una serie de documentos, con la
 							finalidad de poder demostrar tu identidad y así obtener tu
 							duplicado.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Aunque recomendamos la forma online, por sus facilidades y
 							rapidez, ten en cuenta esta opción en el caso en que prefieras
 							hacer el trámite de forma presencial. Debes reunir los siguientes
 							requisitos:
-						</p>
+						</Box>
 						<ul>
-							<li>
+							<li key={1}>
 								Debes contar con la solicitud del trámite de cédula en formato
 								original y en copia.
 							</li>
-							<li>
+							<li key={2}>
 								Es necesario{' '}
 								<span>que cuentes con una copia de la cédula a reponer</span>, y
 								esta debe estar ampliada al 200%.
 							</li>
-							<li>
+							<li key={3}>
 								También debes presentar el título de tu carrera estudiada, y
 								éste debe tener el sello de registro ante la Dirección General
 								de Profesionales.
 							</li>
-							<li>
+							<li key={4}>
 								De la misma manera es necesario presentar el comprobante de
 								pago.
 							</li>
-							<li>
+							<li key={5}>
 								Ten a la mano <span>la copia de tu CURP</span>, en tamaño carta
 								y con ampliación del 200%.
 							</li>
-							<li>
+							<li key={6}>
 								3 fotografías de tamaño infantil, en blanco y negro y con fondo
 								blanco o transparente, deben ser recientes.
 							</li>
 						</ul>
 						<blockquote>
-							<p>
+							<Box className="paragraph">
 								Con estos requisitos ya asegurado, solicita una cita por medio
 								del enlace:{' '}
 								<a href="https://www.citas.sep.gob.mx/citas">
 									https://www.citas.sep.gob.mx/citas
 								</a>
-							</p>
-							<p>Así podrás acceder a un duplicado.</p>
+							</Box>
+							<Box className="paragraph">Así podrás acceder a un duplicado.</Box>
 						</blockquote>
 					</>,
 				]}
@@ -555,52 +556,52 @@ const TextBody = () => {
 			<TextArea title="Validación de la cedula">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							En el sentido de validar la cédula, es importante recalcar que es
 							un tipo de trámite{' '}
 							<span>
 								muy sencillo que equivale a la consulta de la cédula
 								profesional.
 							</span>
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							De manera que solo tienes que devolverte en la lectura y encontrar
 							el ítem de pasos para realizar la consulta.
-						</p>
+						</Box>
 					</>,
 				]}
 			</TextArea>
 			<TextArea title="¿Por qué es importante Obtener este documento?">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							Es importante que cuentes con este documento porque es el aval de
 							tu título académico, te servirá para una serie de trámites.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							Así que{' '}
 							<span>
 								aprovecha y con esta información que te hemos compartido
 							</span>
 							, obtén tu cédula o también tu duplicado en caso de haberla
 							perdido.
-						</p>
+						</Box>
 					</>,
 				]}
 			</TextArea>
 			<TextArea title="¿Quiénes están obligados a tramitar su Cédula?">
 				{[
 					<>
-						<p>
+						<Box className="paragraph">
 							Este es un requisito para todas las personas que han egresado de
 							algún centro de educación superior, que cuenten con una profesión
 							y quieran ejercerla.
-						</p>
-						<p>
+						</Box>
+						<Box className="paragraph">
 							La cédula para los profesionales es, entonces,{' '}
 							<span>un requisito obligatorio para todo</span> tipo de
 							profesionista que quiere competir en el mercado laboral.
-						</p>
+						</Box>
 					</>,
 				]}
 			</TextArea>
@@ -624,14 +625,14 @@ const TextBody = () => {
 							Todo profesional en México puede obtener su cédula de profesional.
 							. .
 						</span>
-						<p>
+						<Box className="paragraph">
 							Solo necesita seguir los pasos para la solicitud,{' '}
 							<span>
 								hacer el pago correspondiente para obtener la certificación
 							</span>{' '}
 							expresa en la cédula, este pago no dependerá de su nacionalidad,
 							sino del tipo o nivel de estudio.
-						</p>
+						</Box>
 					</>,
 				]}
 			</TextArea>
@@ -640,16 +641,16 @@ const TextBody = () => {
 					<>
 						<>Entre los principales beneficios de sacar la cédula, están:</>
 						<ul>
-							<li>
+							<li key={1}>
 								Cuentas con un aval de este documento que certifica tu
 								profesión.
 							</li>
-							<li>
+							<li key={2}>
 								Es como un título portable, que podrás llevar contigo con
 								tranquilidad y comodidad.
 							</li>
-							<li>Te permite acceder a ofertas laborales.</li>
-							<li>
+							<li key={3}>Te permite acceder a ofertas laborales.</li>
+							<li key={4}>
 								Puedes <span>realizar diversos trámites</span>, porque es un
 								documento a nivel de documento de identidad.
 							</li>
@@ -680,20 +681,20 @@ const TextBody = () => {
 					<>
 						<span>La dirección general de profesiones es:</span>
 						<ul>
-							<li>
+							<li key={1}>
 								Viaducto Río Piedad No. 551, Jardín Balbuena, Venustiano
 								Carranza, Código Postal 15900, Ciudad de México.
 							</li>
-							<li>
+							<li key={2}>
 								En esta dirección se labora un horario de atención de lunes a
 								viernes de 9:00 a 19:00 horas.
 							</li>
-							<li>
+							<li key={3}>
 								En cuanto <span>al número telefónico para comunicarte</span>,
 								debes llamar al 36013800 extensión 61100, de igual forma puedes
 								llamar al TelSEP 36017599.
 							</li>
-							<li>
+							<li key={4}>
 								Si lo prefieres puedes comunicarte al lada sin costo 01 800 288
 								6688, con un horario de atención de lunes a viernes de 9:00 a
 								15:00 horas.

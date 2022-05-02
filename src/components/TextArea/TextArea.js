@@ -24,7 +24,6 @@ const TextArea = (props) => {
 				<h2>
 					<strong>{title}</strong>
 				</h2>
-				<p />
 				{RenderParragraphs(children, spacing)}
 			</Box>
 		</Container>

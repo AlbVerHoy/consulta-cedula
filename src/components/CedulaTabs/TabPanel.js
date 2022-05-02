@@ -21,7 +21,7 @@ const TabPanel = (props) => {
 			{...other}>
 			{value === index && (
 				<Box sx={styles}>
-					<Typography>
+					<Typography component={'div'}>
 						<div style={{ marginLeft: '10px' }}>
 							<br />
 							<h3>{title}</h3>

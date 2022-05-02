@@ -25,7 +25,7 @@ const theme = createTheme({
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={theme} component={'div'}>
 			<NavBar />
 			<div className="body">
 				<TextArea title="¿Qué es una Cédula Profesional?" spacing={2}>
