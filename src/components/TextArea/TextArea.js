@@ -1,4 +1,6 @@
 import React from 'react';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 const RenderParragraphs = (paragraphs, spacing) => {
 	let spaces = [];
@@ -7,25 +9,25 @@ const RenderParragraphs = (paragraphs, spacing) => {
 	}
 
 	return paragraphs.map((paragraph, i) => (
-		<div key={i}>
+		<Box key={i}>
 			<p>{paragraph}</p>
 			{spaces}
-		</div>
+		</Box>
 	));
 };
 
 const TextArea = (props) => {
 	const { children, title, spacing } = props;
 	return (
-		<div>
-			<div className="textArea">
+		<Container maxWidth="lg">
+			<Box sx={{boxSizing: 'border-box'}}>
 				<h2>
 					<strong>{title}</strong>
 				</h2>
 				<p />
 				{RenderParragraphs(children, spacing)}
-			</div>
-		</div>
+			</Box>
+		</Container>
 	);
 };
 

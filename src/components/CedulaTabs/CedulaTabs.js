@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -42,7 +43,7 @@ const CedulaTabs = () => {
 	};
 
 	return (
-		<div className="textArea">
+		<Container maxWidth="lg">
 			<h4>
 				<strong style={{ fontSize: '24px', fontWeight: '600' }}>
 					Consulta de cédulas profesionales
@@ -70,7 +71,7 @@ const CedulaTabs = () => {
 					Detalle
 				</TabPanel>
 			</Box>
-		</div>
+		</Container>
 	);
 };
 
