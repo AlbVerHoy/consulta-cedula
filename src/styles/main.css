@@ -2,12 +2,18 @@
 	padding-top: 100px;
 }
 
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
 h2,
 h3,
 h4,
 label,
 p,
 strong,
+.paragraph,
 .navBarButton {
 	font-family: Montserrat !important;
 	color: #404041;
@@ -61,7 +67,8 @@ label {
 	font-weight: 500;
 }
 
-p {
+p,
+.paragraph {
 	font-size: 18px;
 	font-weight: 300;
 	line-height: 1.5;

@@ -32,7 +32,13 @@ const borderStyles = {
 };
 
 const tabStyles = {
-	backgroundColor: '#EAEAEA',
+	textTransform: 'none',
+	padding: '10px 15px',
+	backgroundColor: '#EEE',
+	border: '1px solid #FFFFFF',
+	color: '#404041',
+	fontSize: '16px',
+	fontWeight: '300'
 };
 
 const CedulaTabs = () => {

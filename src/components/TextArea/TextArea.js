@@ -10,7 +10,7 @@ const RenderParragraphs = (paragraphs, spacing) => {
 
 	return paragraphs.map((paragraph, i) => (
 		<Box key={i}>
-			<p>{paragraph}</p>
+			<Box className="paragraph">{paragraph}</Box>
 			{spaces}
 		</Box>
 	));

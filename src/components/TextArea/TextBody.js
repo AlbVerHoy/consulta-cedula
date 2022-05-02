@@ -607,15 +607,13 @@ const TextBody = () => {
 			<TextArea title="¿Se puede ejercer sin este documento?">
 				{[
 					<>
-						<p>
-							Puedes tener un título académico, y contar con un gran
-							conocimiento, pero la verdad es que necesitas la cédula de
-							profesional para poder ejercer tu carrera.
-						</p>
-						<p>
-							Es decir, sin la cédula de profesional no podrás ejercer tu
-							profesión.
-						</p>
+						Puedes tener un título académico, y contar con un gran conocimiento,
+						pero la verdad es que necesitas la cédula de profesional para poder
+						ejercer tu carrera.
+					</>,
+					<>
+						Es decir, sin la cédula de profesional no podrás ejercer tu
+						profesión.
 					</>,
 				]}
 			</TextArea>
@@ -640,7 +638,7 @@ const TextBody = () => {
 			<TextArea title="Beneficios de Sacar tu cédula">
 				{[
 					<>
-						<p>Entre los principales beneficios de sacar la cédula, están:</p>
+						<>Entre los principales beneficios de sacar la cédula, están:</>
 						<ul>
 							<li>
 								Cuentas con un aval de este documento que certifica tu
@@ -662,20 +660,18 @@ const TextBody = () => {
 			<TextArea title="¿Qué es el Registro Nacional de Profesionistas?">
 				{[
 					<>
-						<p>
-							El Registro Nacional de Profesionista sirve como herramienta para
-							saber qué personas ejercen la profesión son una formación técnica
-							o académica.
-						</p>
-						<p>
-							De manera que se le puede considerar como un mecanismo que permite
-							ejemplificar las posibilidades de{' '}
-							<span>
-								la apertura informativa de instituciones gubernamentales.
-							</span>{' '}
-							Provee de información útil y práctica para los empleadores, a la
-							que se puede acceder fácil y sencillamente.
-						</p>
+						El Registro Nacional de Profesionista sirve como herramienta para
+						saber qué personas ejercen la profesión son una formación técnica o
+						académica.
+					</>,
+					<>
+						De manera que se le puede considerar como un mecanismo que permite
+						ejemplificar las posibilidades de{' '}
+						<span>
+							la apertura informativa de instituciones gubernamentales.
+						</span>{' '}
+						Provee de información útil y práctica para los empleadores, a la que
+						se puede acceder fácil y sencillamente.
 					</>,
 				]}
 			</TextArea>
@@ -706,6 +702,9 @@ const TextBody = () => {
 					</>,
 				]}
 			</TextArea>
+			<br />
+			<br />
+			<br />
 		</>
 	);
 };
