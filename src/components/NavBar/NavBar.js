@@ -9,14 +9,18 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import NavBarButton from './NavBarButton';
 import MenuItem from '@mui/material/MenuItem';
+import onClickUrl from '../../functions/functions';
 
 const pages = [
-	{ name: 'Registro para vacunación', url: 'https://mivacuna.salud.gob.mx/' },
-	{ name: 'Información sobre COVID-19', url: 'https://coronavirus.gob.mx/' },
-	{ name: 'Trámites', url: 'https://www.gob.mx/tramites/otros' },
-	{ name: 'Gobierno', url: 'https://www.gob.mx/gobierno' },
 	{
-		name: (
+		content: 'Registro para vacunación',
+		url: 'https://mivacuna.salud.gob.mx/',
+	},
+	{ content: 'Información sobre COVID-19', url: 'https://coronavirus.gob.mx/' },
+	{ content: 'Trámites', url: 'https://www.gob.mx/tramites/otros' },
+	{ content: 'Gobierno', url: 'https://www.gob.mx/gobierno' },
+	{
+		content: (
 			<img
 				className="img-fluid"
 				alt="lupa"
@@ -24,6 +28,7 @@ const pages = [
 			/>
 		),
 		url: 'https://www.gob.mx/busqueda?utf8=%E2%9C%93',
+		alt: 'Buscar',
 	},
 ];
 
@@ -34,23 +39,16 @@ const NavBar = () => {
 		setAnchorElNav(event.currentTarget);
 	};
 
-	const handleCloseNavMenu = () => {
+	const handleCloseNavMenu = (url) => {
+		onClickUrl(url);
 		setAnchorElNav(null);
 	};
 
 	return (
 		<Box>
 			<AppBar position="fixed">
-				<Toolbar sx={{ justifyContent: 'space-between' }}>
-					<Stack direction="row" spacing={60}>
-						<NavBarButton>
-							<img
-								width={150}
-								height={35}
-								alt="logoheader"
-								src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"
-							/>
-						</NavBarButton>
+				<Toolbar>
+					<Stack direction="row" spacing={3}>
 						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 							<IconButton
 								size="large"
@@ -61,6 +59,14 @@ const NavBar = () => {
 								color="inherit">
 								<MenuIcon />
 							</IconButton>
+							<NavBarButton>
+								<img
+									width={150}
+									height={35}
+									alt="logoheader"
+									src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"
+								/>
+							</NavBarButton>
 							<Menu
 								id="menu-appbar"
 								anchorEl={anchorElNav}
@@ -79,23 +85,40 @@ const NavBar = () => {
 									display: { xs: 'block', md: 'none' },
 								}}>
 								{pages.map((page) => (
-									<MenuItem key={page.name} onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">{page.name}</Typography>
+									<MenuItem
+										key={page.content}
+										onClick={() => handleCloseNavMenu(page.url)}>
+										<Typography textAlign="center">
+											{page.alt ? page.alt : page.content}
+										</Typography>
 									</MenuItem>
 								))}
 							</Menu>
 						</Box>
-						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-							{pages.map((page) => (
-								<NavBarButton
-									url={page.url}
-									key={page.name}
-									onClick={handleCloseNavMenu}
-									sx={{ my: 2, color: 'white', display: 'block' }}>
-									{page.name}
-								</NavBarButton>
-							))}
-						</Box>
+						<Stack
+							direction="row"
+							spacing={40}
+							sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+							<NavBarButton>
+								<img
+									width={150}
+									height={35}
+									alt="logoheader"
+									src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"
+								/>
+							</NavBarButton>
+							<Box>
+								{pages.map((page) => (
+									<NavBarButton
+										url={page.url}
+										key={page.content}
+										onClick={handleCloseNavMenu}
+										sx={{ my: 2, color: 'white', display: 'block' }}>
+										{page.content}
+									</NavBarButton>
+								))}
+							</Box>
+						</Stack>
 					</Stack>
 				</Toolbar>
 			</AppBar>

@@ -1,14 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-
-const openInNewTab = (url) => {
-	const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-	if (newWindow) newWindow.opener = null;
-};
-
-const onClickUrl = (url) => {
-	return () => openInNewTab(url);
-};
+import onClickUrl from '../../functions/functions';
 
 const NavBarButton = (props) => {
 	return (
