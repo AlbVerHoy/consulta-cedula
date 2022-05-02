@@ -1,16 +1,16 @@
-FROM node:13.12.0-alpine as build
+#!/bin/bash
+FROM alpine as build
+RUN apk add --update nodejs npm
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm ci --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-COPY . ./
+COPY package*.json ./
+RUN npm ci
+COPY . .
 RUN npm run build
 
-FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
-
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM alpine
+RUN apk add --update nodejs npm
+RUN npm install -g serve
+WORKDIR /app
+COPY --from=build /app/build ./build
+EXPOSE 3000
+CMD ["serve", "-s", "build", "-l", "3000"]
