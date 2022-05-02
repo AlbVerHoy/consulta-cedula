@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
@@ -8,6 +8,7 @@ const BusquedaTextField = (props) => {
 			component="form"
 			sx={{
 				width: '25ch',
+				marginRight: '2%',
 			}}
 			spacing={1}
 			noValidate
