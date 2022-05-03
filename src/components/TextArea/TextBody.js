@@ -479,8 +479,17 @@ const TextBody = () => {
 							</li>
 							<li key={3}>
 								Con estos requisitos ya podrás ingresar a la página de la
-								Secretaría de Educación Pública, hazlo con el siguiente enlace:
-								https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67
+								Secretaría de Educación Pública, hazlo con el siguiente enlace: {' '}
+								<Link
+									underline="always"
+									color="#404041"
+									sx={linkStyles}
+									component="button"
+									onClick={onClickUrl(
+										'https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67'
+									)}>
+									https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67
+								</Link>
 							</li>
 							<li key={4}>Ubica el botón de Trámite en línea.</li>
 							<li key={5}>
