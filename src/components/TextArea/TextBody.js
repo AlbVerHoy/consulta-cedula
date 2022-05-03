@@ -9,6 +9,7 @@ const linkStyles = {
 	fontSize: '18px !important',
 	fontWeight: '500',
 	textAlign: 'left',
+	width: '100%',
 };
 
 const TextBody = () => {
