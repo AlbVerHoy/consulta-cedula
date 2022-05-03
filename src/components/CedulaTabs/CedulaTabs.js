@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,18 +6,6 @@ import Box from '@mui/material/Box';
 import TabPanel from './TabPanel';
 import BusquedaTabPanel from './Busqueda/BusquedaTabPanel';
 import ResultsRable from './Resultados/ResultsTable';
-
-const rows = [
-	{
-		cedula: 'AFSF618721',
-		nombre: 'Alberto',
-		primerApellido: 'Verano',
-		segundoApellido: 'Hoyos',
-		tipo: 'Profesional',
-		institucion: 'ITL',
-		profesion: 'Sistemas',
-	},
-];
 
 const a11yProps = (index) => {
 	return {
@@ -38,11 +26,16 @@ const tabStyles = {
 	border: '1px solid #FFFFFF',
 	color: '#404041',
 	fontSize: '16px',
-	fontWeight: '300'
+	fontWeight: '300',
 };
 
 const CedulaTabs = () => {
-	const [value, setValue] = React.useState(0);
+	const [data, setData] = useState('');
+	const [value, setValue] = useState(0);
+
+	const handleConsultaCedula = (data) => {
+		setData(data);
+	};
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -68,10 +61,10 @@ const CedulaTabs = () => {
 					</Tabs>
 				</Box>
 				<TabPanel value={value} index={0} title="Datos de consulta">
-					<BusquedaTabPanel />
+					<BusquedaTabPanel handleConsultaCedula={handleConsultaCedula} />
 				</TabPanel>
 				<TabPanel value={value} index={1} title="Resultados de búsqueda">
-					<ResultsRable rows={rows} />
+					<ResultsRable rows={data} />
 				</TabPanel>
 				<TabPanel value={value} index={2}>
 					Detalle

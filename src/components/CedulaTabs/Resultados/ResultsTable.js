@@ -18,6 +18,7 @@ const rowStyles = {
 };
 
 const ResultsRable = (props) => {
+	const { rows } = props;
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -32,20 +33,24 @@ const ResultsRable = (props) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{props.rows.map((row) => (
-						<TableRow
-							key={row.name}
-							sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-							<TableCell component="th" scope="row" sx={rowStyles}>
-								{row.cedula}
-							</TableCell>
-							<TableCell sx={rowStyles}>{row.nombre}</TableCell>
-							<TableCell sx={rowStyles}>{row.primerApellido}</TableCell>
-							<TableCell sx={rowStyles}>{row.segundoApellido}</TableCell>
-							<TableCell sx={rowStyles}>{row.institucion}</TableCell>
-							<TableCell sx={rowStyles}>{row.profesion}</TableCell>
-						</TableRow>
-					))}
+					{rows ? (
+						rows.map((row) => (
+							<TableRow
+								key={row.nombre}
+								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+								<TableCell component="th" scope="row" sx={rowStyles}>
+									{row.cedula}
+								</TableCell>
+								<TableCell sx={rowStyles}>{row.nombre}</TableCell>
+								<TableCell sx={rowStyles}>{row.primerApellido}</TableCell>
+								<TableCell sx={rowStyles}>{row.segundoApellido}</TableCell>
+								<TableCell sx={rowStyles}>{row.institucion}</TableCell>
+								<TableCell sx={rowStyles}>{row.profesion}</TableCell>
+							</TableRow>
+						))
+					) : (
+						<></>
+					)}
 				</TableBody>
 			</Table>
 		</TableContainer>
