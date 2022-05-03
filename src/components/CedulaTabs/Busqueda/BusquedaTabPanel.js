@@ -61,7 +61,7 @@ const BusquedaTabPanel = (props) => {
 					Consultar
 				</Button>
 				<label
-					style={{ marginTop: '2rem', marginLeft: '5rem', fontWeight: 600 }}>
+					style={{ marginTop: '2rem', fontWeight: 600 }}>
 					(*) Campos obligatorios
 				</label>
 			</Stack>

@@ -1,6 +1,15 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import TextArea from './TextArea';
+import onClickUrl from '../../functions/functions';
+
+const linkStyles = {
+	fontFamily: 'Montserrat !important',
+	fontSize: '18px !important',
+	fontWeight: '500',
+	textAlign: 'left',
+};
 
 const TextBody = () => {
 	return (
@@ -97,7 +106,9 @@ const TextBody = () => {
 						</li>
 						<li key={8}>Título Profesional</li>
 						<li key={9}>Recibo de pago de derechos federales</li>
-						<li key={10}>Solicitud de registro de Titulo y Expedición de cédula</li>
+						<li key={10}>
+							Solicitud de registro de Titulo y Expedición de cédula
+						</li>
 						<li key={11}>Solicitar Tu Cita para sacar la cedula.</li>
 					</ul>,
 					<blockquote>
@@ -293,16 +304,23 @@ const TextBody = () => {
 							<li key={1}>
 								Lo primero que debes hacer, es ingresar a la plataforma oficial
 								para tu registro de profesionales:{' '}
-								<a
-									href="https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action"
-									rel="noopener noreferrer">
+								<Link
+									underline="always"
+									color="#404041"
+									sx={linkStyles}
+									component="button"
+									onClick={onClickUrl(
+										'https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action'
+									)}>
 									https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action
-								</a>
+								</Link>
 							</li>
 							<li key={2}>
 								Hay dos formas de iniciar el trámite, puedes hacerlo con:
 								<ul>
-									<li key={1}>La Clave Única de Registro de Población (CURP).</li>
+									<li key={1}>
+										La Clave Única de Registro de Población (CURP).
+									</li>
 									<li key={2}>A través de los datos personales.</li>
 								</ul>
 							</li>
@@ -353,9 +371,14 @@ const TextBody = () => {
 							<li key={1}>
 								<span>
 									En primer lugar tienes que ingresar a:{' '}
-									<a href="https://www.citas.sep.gob.mx">
-										https://www.citas.sep.gob.mx/
-									</a>
+									<Link
+										underline="always"
+										color="#404041"
+										sx={linkStyles}
+										component="button"
+										onClick={onClickUrl('https://www.citas.sep.gob.mx')}>
+										https://www.citas.sep.gob.mx
+									</Link>
 								</span>
 							</li>
 							<li key={2}>
@@ -443,7 +466,9 @@ const TextBody = () => {
 								<ul>
 									<li key={1}>Tu nombre, lugar y fecha de nacimiento.</li>
 									<li key={2}>También debe tener tu nacionalidad.</li>
-									<li key={3}>La Clave Única de Registro de Población (CURP).</li>
+									<li key={3}>
+										La Clave Única de Registro de Población (CURP).
+									</li>
 								</ul>
 							</li>
 							<li key={2}>
@@ -544,11 +569,18 @@ const TextBody = () => {
 							<Box className="paragraph">
 								Con estos requisitos ya asegurado, solicita una cita por medio
 								del enlace:{' '}
-								<a href="https://www.citas.sep.gob.mx/citas">
+								<Link
+									underline="always"
+									color="#404041"
+									sx={linkStyles}
+									component="button"
+									onClick={onClickUrl('https://www.citas.sep.gob.mx/citas')}>
 									https://www.citas.sep.gob.mx/citas
-								</a>
+								</Link>
 							</Box>
-							<Box className="paragraph">Así podrás acceder a un duplicado.</Box>
+							<Box className="paragraph">
+								Así podrás acceder a un duplicado.
+							</Box>
 						</blockquote>
 					</>,
 				]}
