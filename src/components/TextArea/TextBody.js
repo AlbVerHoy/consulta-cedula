@@ -485,7 +485,7 @@ const TextBody = () => {
 									color="#404041"
 									sx={linkStyles}
 									target="_blank"
-									rel="noopener"
+									rel="noopener" component={"div"}
 									href="https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67">
 									https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67
 								</Link>
