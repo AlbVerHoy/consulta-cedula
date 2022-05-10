@@ -370,17 +370,15 @@ const TextBody = () => {
 						</Box>
 						<ul>
 							<li key={1}>
-								<span>
-									En primer lugar tienes que ingresar a:{' '}
-									<Link
-										underline="always"
-										color="#404041"
-										sx={linkStyles}
-										component="button"
-										onClick={onClickUrl('https://www.citas.sep.gob.mx')}>
-										https://www.citas.sep.gob.mx
-									</Link>
-								</span>
+							<Box className="paragraph"><span>En primer lugar tienes que ingresar a:</span></Box>
+								<Link
+									underline="always"
+									color="#404041"
+									sx={linkStyles}
+									component="button"
+									onClick={onClickUrl('https://www.citas.sep.gob.mx')}>
+									https://www.citas.sep.gob.mx
+								</Link>
 							</li>
 							<li key={2}>
 								Ubica la pestaña “Cita”, Arriba a la derecha, y de las tres
@@ -479,7 +477,7 @@ const TextBody = () => {
 							</li>
 							<li key={3}>
 								Con estos requisitos ya podrás ingresar a la página de la
-								Secretaría de Educación Pública, hazlo con el siguiente enlace: {' '}
+								Secretaría de Educación Pública, hazlo con el siguiente enlace:{' '}
 								<Link
 									underline="always"
 									color="#404041"

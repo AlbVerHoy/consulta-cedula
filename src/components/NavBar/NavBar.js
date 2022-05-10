@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -33,7 +33,7 @@ const pages = [
 ];
 
 const NavBar = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null);
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -49,7 +49,7 @@ const NavBar = () => {
 			<AppBar position="fixed">
 				<Toolbar>
 					<Stack direction="row" spacing={3}>
-						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
 							<IconButton
 								size="large"
 								aria-label="account of current user"
@@ -82,7 +82,7 @@ const NavBar = () => {
 								open={Boolean(anchorElNav)}
 								onClose={handleCloseNavMenu}
 								sx={{
-									display: { xs: 'block', md: 'none' },
+									display: { md: 'block', lg: 'none' },
 								}}>
 								{pages.map((page) => (
 									<MenuItem
@@ -98,7 +98,7 @@ const NavBar = () => {
 						<Stack
 							direction="row"
 							spacing={40}
-							sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+							sx={{ flexGrow: 1, display: { xs: 'none', md: 'none', lg: 'flex' } }}>
 							<NavBarButton>
 								<img
 									width={150}
@@ -112,7 +112,7 @@ const NavBar = () => {
 									<NavBarButton
 										url={page.url}
 										key={page.content}
-										onClick={handleCloseNavMenu}
+										onClick={() => onClickUrl(page.url)}
 										sx={{ my: 2, color: 'white', display: 'block' }}>
 										{page.content}
 									</NavBarButton>

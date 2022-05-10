@@ -28,7 +28,8 @@ const BusquedaTabPanel = (props) => {
 		() =>
 			fetch('apiUrl.dummy' + nombre + primerApellido + segundoApellido).then(
 				(res) => {
-					handleConsultaCedula(res.json());
+					//handleConsultaCedula(res.json());
+					handleConsultaCedula();
 				}
 			),
 		{ enabled: false }
