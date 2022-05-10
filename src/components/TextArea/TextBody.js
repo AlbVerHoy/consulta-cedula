@@ -2,14 +2,13 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import TextArea from './TextArea';
-import onClickUrl from '../../functions/functions';
 
 const linkStyles = {
 	fontFamily: 'Montserrat !important',
 	fontSize: '18px !important',
 	fontWeight: '500',
 	textAlign: 'left',
-	width: '100%',
+	overflowX: 'auto'
 };
 
 const TextBody = () => {
@@ -309,10 +308,10 @@ const TextBody = () => {
 									underline="always"
 									color="#404041"
 									sx={linkStyles}
-									component="button"
-									onClick={onClickUrl(
-										'https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action'
-									)}>
+									target="_blank"
+									rel="noopener"
+									component={"div"}
+									href="https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action">
 									https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action
 								</Link>
 							</li>
@@ -370,13 +369,16 @@ const TextBody = () => {
 						</Box>
 						<ul>
 							<li key={1}>
-							<Box className="paragraph"><span>En primer lugar tienes que ingresar a:</span></Box>
+								<Box className="paragraph">
+									<span>En primer lugar tienes que ingresar a:</span>
+								</Box>
 								<Link
 									underline="always"
 									color="#404041"
 									sx={linkStyles}
-									component="button"
-									onClick={onClickUrl('https://www.citas.sep.gob.mx')}>
+									target="_blank"
+									rel="noopener"
+									href="https://www.citas.sep.gob.mx">
 									https://www.citas.sep.gob.mx
 								</Link>
 							</li>
@@ -482,10 +484,9 @@ const TextBody = () => {
 									underline="always"
 									color="#404041"
 									sx={linkStyles}
-									component="button"
-									onClick={onClickUrl(
-										'https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67'
-									)}>
+									target="_blank"
+									rel="noopener"
+									href="https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67">
 									https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67
 								</Link>
 							</li>
@@ -581,8 +582,9 @@ const TextBody = () => {
 									underline="always"
 									color="#404041"
 									sx={linkStyles}
-									component="button"
-									onClick={onClickUrl('https://www.citas.sep.gob.mx/citas')}>
+									target="_blank"
+									rel="noopener"
+									href="https://www.citas.sep.gob.mx/citas">
 									https://www.citas.sep.gob.mx/citas
 								</Link>
 							</Box>

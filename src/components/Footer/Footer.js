@@ -6,7 +6,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import onClickUrl from '../../functions/functions';
 
 const linkStyles = {
 	fontFamily: 'Montserrat !important',
@@ -68,34 +67,35 @@ const Footer = () => {
 					</Box>
 					<Stack>
 						<Link
-							underline="hover"
+							target="_blank"
+							rel="noopener"
+							href="http://www.participa.gob.mx/"
 							color="#fff"
-							sx={linkStyles}
-							component="button"
-							onClick={onClickUrl('http://www.participa.gob.mx/')}>
+							sx={linkStyles}>
 							Participa
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/publicaciones')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/publicaciones"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Publicaciones Oficiales
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('http://www.ordenjuridico.gob.mx/')}
+							target="_blank"
+							rel="noopener"
+							href="http://www.ordenjuridico.gob.mx/"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Marco Jurídico
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl(
-								'https://consultapublicamx.inai.org.mx/vut-web/'
-							)}
+							target="_blank"
+							rel="noopener"
+							href="https://consultapublicamx.inai.org.mx/vut-web/"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
@@ -111,8 +111,9 @@ const Footer = () => {
 						Es el portal único de trámites, información y participación
 						ciudadana.{' '}
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/que-es-gobmx')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/que-es-gobmx'"
 							underline="always"
 							color="#fff"
 							sx={linkStyles}>
@@ -121,58 +122,63 @@ const Footer = () => {
 					</Box>
 					<Stack>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://datos.gob.mx/')}
+							target="_blank"
+							rel="noopener"
+							href="https://datos.gob.mx/"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Portal de datos abiertos
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/accesibilidad')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/accesibilidad"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Declaración de accesibilidad
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/privacidadintegral')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/privacidadintegral"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Aviso de privacidad integral
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/privacidadsimplificado')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/privacidadsimplificado"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Aviso de privacidad simplificado
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/terminos')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/terminos"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Términos y condiciones
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl(
-								'https://www.gob.mx/terminos#medidas-seguridad-informacion'
-							)}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/terminos#medidas-seguridad-informacion"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
 							Política de seguridad
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.gob.mx/sitemap')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.gob.mx/sitemap"
 							underline="hover"
 							color="#fff"
 							sx={linkStyles}>
@@ -182,10 +188,9 @@ const Footer = () => {
 				</Stack>
 				<Stack flex="1.7" sx={{ padding: '1%' }}>
 					<Link
-						component="button"
-						onClick={onClickUrl(
-							'https://www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54'
-						)}
+						target="_blank"
+						rel="noopener"
+						href="https://www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54"
 						underline="always"
 						color="#fff"
 						sx={paragraphHeadStyles}>
@@ -197,15 +202,17 @@ const Footer = () => {
 					</Box>
 					<Stack direction="row" spacing={2}>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://www.facebook.com/gobmexico/')}
+							target="_blank"
+							rel="noopener"
+							href="https://www.facebook.com/gobmexico/"
 							underline="none"
 							color="white">
 							<FacebookIcon />
 						</Link>
 						<Link
-							component="button"
-							onClick={onClickUrl('https://twitter.com/GobiernoMX')}
+							target="_blank"
+							rel="noopener"
+							href="https://twitter.com/GobiernoMX"
 							underline="none"
 							color="white">
 							<TwitterIcon />

@@ -17,6 +17,7 @@ const pages = [
 	{ content: 'Información sobre COVID-19', url: 'https://coronavirus.gob.mx/' },
 	{ content: 'Trámites', url: 'https://www.gob.mx/tramites/otros' },
 	{ content: 'Gobierno', url: 'https://www.gob.mx/gobierno' },
+	{ content: 'Administración', url: '#' },
 	{
 		content: (
 			<img
@@ -86,8 +87,7 @@ const NavBar = () => {
 									display: { md: 'block', lg: 'none' },
 								}}>
 								{pages.map((page) => (
-									<MenuItem
-										key={page.content}>
+									<MenuItem key={page.content}>
 										<Link
 											textAlign="center"
 											href={page.url}
@@ -119,7 +119,7 @@ const NavBar = () => {
 								direction={'row'}
 								spacing={2}
 								sx={{
-									marginLeft: '40% !Important',
+									marginLeft: '30% !Important',
 									position: 'relative',
 									top: '20% !important',
 								}}>
