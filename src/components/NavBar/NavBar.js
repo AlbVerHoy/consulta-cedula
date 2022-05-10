@@ -4,12 +4,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import NavBarButton from './NavBarButton';
 import MenuItem from '@mui/material/MenuItem';
-import onClickUrl from '../../functions/functions';
 
 const pages = [
 	{
@@ -39,8 +37,7 @@ const NavBar = () => {
 		setAnchorElNav(event.currentTarget);
 	};
 
-	const handleCloseNavMenu = (url) => {
-		onClickUrl(url);
+	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
 
@@ -48,8 +45,12 @@ const NavBar = () => {
 		<Box>
 			<AppBar position="fixed">
 				<Toolbar>
-					<Stack direction="row" spacing={3}>
-						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
+					<Stack direction="row" spacing={3} sx={{ width: '100%' }}>
+						<Box
+							sx={{
+								flexGrow: 1,
+								display: { xs: 'flex', md: 'flex', lg: 'none' },
+							}}>
 							<IconButton
 								size="large"
 								aria-label="account of current user"
@@ -59,14 +60,14 @@ const NavBar = () => {
 								color="inherit">
 								<MenuIcon />
 							</IconButton>
-							<NavBarButton>
+							<IconButton>
 								<img
 									width={150}
 									height={35}
 									alt="logoheader"
 									src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"
 								/>
-							</NavBarButton>
+							</IconButton>
 							<Menu
 								id="menu-appbar"
 								anchorEl={anchorElNav}
@@ -86,11 +87,15 @@ const NavBar = () => {
 								}}>
 								{pages.map((page) => (
 									<MenuItem
-										key={page.content}
-										onClick={() => handleCloseNavMenu(page.url)}>
-										<Typography textAlign="center">
+										key={page.content}>
+										<Link
+											textAlign="center"
+											href={page.url}
+											underline={'none'}
+											target="_blank"
+											rel="noopener">
 											{page.alt ? page.alt : page.content}
-										</Typography>
+										</Link>
 									</MenuItem>
 								))}
 							</Menu>
@@ -98,26 +103,38 @@ const NavBar = () => {
 						<Stack
 							direction="row"
 							spacing={40}
-							sx={{ flexGrow: 1, display: { xs: 'none', md: 'none', lg: 'flex' } }}>
-							<NavBarButton>
+							sx={{
+								flexGrow: 1,
+								display: { xs: 'none', md: 'none', lg: 'flex' },
+							}}>
+							<IconButton>
 								<img
 									width={150}
 									height={35}
 									alt="logoheader"
 									src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"
 								/>
-							</NavBarButton>
-							<Box>
+							</IconButton>
+							<Stack
+								direction={'row'}
+								spacing={2}
+								sx={{
+									marginLeft: '40% !Important',
+									position: 'relative',
+									top: '20% !important',
+								}}>
 								{pages.map((page) => (
-									<NavBarButton
-										url={page.url}
-										key={page.content}
-										onClick={() => onClickUrl(page.url)}
-										sx={{ my: 2, color: 'white', display: 'block' }}>
+									<Link
+										target="_blank"
+										rel="noopener"
+										className="navBarButton"
+										href={page.url}
+										underline={'none'}
+										sx={{ color: 'white', display: 'block' }}>
 										{page.content}
-									</NavBarButton>
+									</Link>
 								))}
-							</Box>
+							</Stack>
 						</Stack>
 					</Stack>
 				</Toolbar>
