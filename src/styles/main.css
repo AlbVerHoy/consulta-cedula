@@ -117,10 +117,6 @@ h3 strong {
 	text-transform: none !important;
 }
 
-.css-1wypye2-MuiGrid-root {
-	width: 90% !important;
-}
-
-.css-hf3zvx {
+.css-1wypye2-MuiGrid-root, .MuiGrid-root.MuiGrid-container.css-hf3zvx  {
 	width: 90% !important;
 }
