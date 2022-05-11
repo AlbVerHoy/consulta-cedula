@@ -33,7 +33,7 @@ const ResultsRable = (props) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{rows ? (
+					{rows ?? (
 						rows.map((row) => (
 							<TableRow
 								key={row.nombre}
@@ -48,8 +48,6 @@ const ResultsRable = (props) => {
 								<TableCell sx={rowStyles}>{row.profesion}</TableCell>
 							</TableRow>
 						))
-					) : (
-						<></>
 					)}
 				</TableBody>
 			</Table>
