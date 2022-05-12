@@ -2,9 +2,8 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-const BusquedaTextField = (props) => {
+export default function BusquedaTextField(props) {
 	const { children, placeholder, onChange } = props;
-
 	return (
 		<Stack
 			component="form"
@@ -24,6 +23,4 @@ const BusquedaTextField = (props) => {
 			/>
 		</Stack>
 	);
-};
-
-export default BusquedaTextField;
+}

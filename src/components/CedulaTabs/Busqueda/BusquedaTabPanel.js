@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import BusquedaTextField from './BusquedaTextField';
 import { useQuery } from 'react-query';
 
-const BusquedaTabPanel = (props) => {
+export default function BusquedaTabPanel(props) {
 	const { handleConsultaCedula } = props;
 	const [nombre, setNombre] = useState('');
 	const [primerApellido, setPrimerApellido] = useState('');
@@ -69,5 +69,3 @@ const BusquedaTabPanel = (props) => {
 		</Grid>
 	);
 };
-
-export default BusquedaTabPanel;

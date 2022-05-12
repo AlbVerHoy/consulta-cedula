@@ -31,14 +31,15 @@ const paragraphHeadStyles = {
 	textAlign: 'left',
 };
 
-const Footer = () => {
+export default function Footer() {
 	return (
 		<Container
 			maxWidth="100%"
 			sx={{
 				backgroundColor: '#13332b',
 				color: '#fff',
-				position: 'absolute',
+				clear: 'both',
+				position: 'relative',
 				paddingLeft: '0 !important',
 				paddingRight: '0 !important',
 			}}>
@@ -238,6 +239,4 @@ const Footer = () => {
 			</div>
 		</Container>
 	);
-};
-
-export default Footer;
+}

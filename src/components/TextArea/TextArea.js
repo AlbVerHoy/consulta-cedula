@@ -16,11 +16,11 @@ const RenderParragraphs = (paragraphs, spacing) => {
 	));
 };
 
-const TextArea = (props) => {
+export default function TextArea(props) {
 	const { children, title, spacing } = props;
 	return (
 		<Container maxWidth="lg">
-			<Box sx={{boxSizing: 'border-box'}}>
+			<Box sx={{ boxSizing: 'border-box' }}>
 				<h2>
 					<strong>{title}</strong>
 				</h2>
@@ -28,6 +28,4 @@ const TextArea = (props) => {
 			</Box>
 		</Container>
 	);
-};
-
-export default TextArea;
+}

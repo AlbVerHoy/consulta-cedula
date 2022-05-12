@@ -17,7 +17,7 @@ const rowStyles = {
 	fontWeight: 400,
 };
 
-const ResultsRable = (props) => {
+export default function ResultsRable(props) {
 	const { rows } = props;
 	return (
 		<TableContainer component={Paper}>
@@ -33,7 +33,7 @@ const ResultsRable = (props) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{rows ?? (
+					{rows ??
 						rows.map((row) => (
 							<TableRow
 								key={row.nombre}
@@ -47,12 +47,9 @@ const ResultsRable = (props) => {
 								<TableCell sx={rowStyles}>{row.institucion}</TableCell>
 								<TableCell sx={rowStyles}>{row.profesion}</TableCell>
 							</TableRow>
-						))
-					)}
+						))}
 				</TableBody>
 			</Table>
 		</TableContainer>
 	);
-};
-
-export default ResultsRable;
+}

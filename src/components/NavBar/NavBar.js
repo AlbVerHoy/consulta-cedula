@@ -17,7 +17,7 @@ const pages = [
 	{ content: 'Información sobre COVID-19', url: 'https://coronavirus.gob.mx/' },
 	{ content: 'Trámites', url: 'https://www.gob.mx/tramites/otros' },
 	{ content: 'Gobierno', url: 'https://www.gob.mx/gobierno' },
-	{ content: 'Administración', url: '#' },
+	{ content: 'Administración', url: '/login' },
 	{
 		content: (
 			<img
@@ -31,7 +31,7 @@ const pages = [
 	},
 ];
 
-const NavBar = () => {
+export default function NavBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
 
 	const handleOpenNavMenu = (event) => {
@@ -107,7 +107,7 @@ const NavBar = () => {
 								flexGrow: 1,
 								display: { xs: 'none', md: 'none', lg: 'flex' },
 							}}>
-							<IconButton>
+							<IconButton href='/'>
 								<img
 									width={150}
 									height={35}
@@ -141,6 +141,4 @@ const NavBar = () => {
 			</AppBar>
 		</Box>
 	);
-};
-
-export default NavBar;
+}

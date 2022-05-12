@@ -8,10 +8,10 @@ const linkStyles = {
 	fontSize: '18px !important',
 	fontWeight: '500',
 	textAlign: 'left',
-	overflowX: 'auto'
+	overflowX: 'auto',
 };
 
-const TextBody = () => {
+export default function TextBody() {
 	return (
 		<>
 			<br />
@@ -310,7 +310,7 @@ const TextBody = () => {
 									sx={linkStyles}
 									target="_blank"
 									rel="noopener"
-									component={"div"}
+									component={'div'}
 									href="https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action">
 									https://msirepve.sep.gob.mx/validacionelectronica/publico/startCedulaElectronica!startWizard.action
 								</Link>
@@ -378,6 +378,7 @@ const TextBody = () => {
 									sx={linkStyles}
 									target="_blank"
 									rel="noopener"
+									component={'div'}
 									href="https://www.citas.sep.gob.mx">
 									https://www.citas.sep.gob.mx
 								</Link>
@@ -485,7 +486,8 @@ const TextBody = () => {
 									color="#404041"
 									sx={linkStyles}
 									target="_blank"
-									rel="noopener" component={"div"}
+									rel="noopener"
+									component={'div'}
 									href="https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67">
 									https://www.gob.mx/tramites/ficha/duplicado-de-cedula-profesional/SEP67
 								</Link>
@@ -584,6 +586,7 @@ const TextBody = () => {
 									sx={linkStyles}
 									target="_blank"
 									rel="noopener"
+									component={'div'}
 									href="https://www.citas.sep.gob.mx/citas">
 									https://www.citas.sep.gob.mx/citas
 								</Link>
@@ -750,6 +753,4 @@ const TextBody = () => {
 			<br />
 		</>
 	);
-};
-
-export default TextBody;
+}

@@ -29,7 +29,7 @@ const tabStyles = {
 	fontWeight: '300',
 };
 
-const CedulaTabs = () => {
+export default function CedulaTabs() {
 	const [data, setData] = useState('');
 	const [value, setValue] = useState(0);
 
@@ -72,6 +72,4 @@ const CedulaTabs = () => {
 			</Box>
 		</Container>
 	);
-};
-
-export default CedulaTabs;
+}

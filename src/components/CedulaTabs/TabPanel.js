@@ -9,9 +9,8 @@ const styles = {
 	borderColor: 'divider',
 };
 
-const TabPanel = (props) => {
-	const { title ,children, value, index, ...other } = props;
-
+export default function TabPanel(props) {
+	const { title, children, value, index, ...other } = props;
 	return (
 		<div
 			role="tabpanel"
@@ -33,6 +32,4 @@ const TabPanel = (props) => {
 			)}
 		</div>
 	);
-};
-
-export default TabPanel;
+}
