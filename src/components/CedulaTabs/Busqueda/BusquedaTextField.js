@@ -19,7 +19,7 @@ export default function BusquedaTextField(props) {
 				hiddenLabel
 				size="small"
 				placeholder={placeholder}
-				onChange={(ev) => onChange(ev.target.value)}
+				onChange={(e) => onChange(e.target.value)}
 			/>
 		</Stack>
 	);

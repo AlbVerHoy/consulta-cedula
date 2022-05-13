@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import MainView from './views/MainView';
 import './styles/main.css';
 import LoginView from './views/LoginView';
+import AdministrationView from './views/AdministrationView';
 
 const theme = createTheme({
 	status: {
@@ -35,6 +36,7 @@ export default function App() {
 					<Routes>
 						<Route path="/" element={<MainView />} />
 						<Route path="/login" element={<LoginView />} />
+						<Route path="/administration" element={<AdministrationView />} />
 					</Routes>
 				</Router>
 				<Footer />
