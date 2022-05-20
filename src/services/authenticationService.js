@@ -37,24 +37,20 @@ export const IsTokenValid = () => {
 	return expDate >= dateNow;
 };
 
-export const Auth = async () =>
-	new Promise((resolve, reject) => {
-		const requestOptions = {
-			headers: { 'Content-Type': 'application/json' },
-		};
-		axios
-			.post(
-				`${apiUrl}/authenticate`,
-				JSON.stringify({ ${process.env.username}, ${process.env.password} }),
-				requestOptions
-			)
-			.then((res) => {
-				localStorage.setItem('accessToken', JSON.stringify(res.data));
-				resolve(res);
-			})
-			.catch((err) => reject(Error(err)));
-	});
-
-export const Logout = () => {
-	localStorage.removeItem('accessToken');
-};
+// export const Auth = async () =>
+// 	new Promise((resolve, reject) => {
+// 		const requestOptions = {
+// 			headers: { 'Content-Type': 'application/json' },
+// 		};
+// 		axios
+// 			.post(
+// 				`${apiUrl}/authenticate`,
+// 				JSON.stringify({ ${process.env.username}, ${process.env.password} }),
+// 				requestOptions
+// 			)
+// 			.then((res) => {
+// 				localStorage.setItem('accessToken', JSON.stringify(res.data));
+// 				resolve(res);
+// 			})
+// 			.catch((err) => reject(Error(err)));
+// 	});
