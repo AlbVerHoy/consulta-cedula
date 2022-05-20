@@ -25,7 +25,7 @@ export default function BusquedaTabPanel(props) {
 
 	const findPerson = (person) => {
 		const requestOptions = {
-			headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUyOTQ2Njk4LCJpYXQiOjE2NTI5Mjg2OTh9.CIUEloQRYmwn-InlVDdid3syN_LN5FM8HkHBWJcqiyvoLKieN_XmViy7BxV2zqlwAvwTORtlMdS8TVhxyA2rgA',
+			headers: { Authorization: 'Bearer ',
 			'Content-Type': 'application/json' },
 		};
 		const apiUrl = 'https://smerceudla.herokuapp.com';
