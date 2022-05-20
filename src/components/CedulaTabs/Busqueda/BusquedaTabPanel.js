@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import BusquedaTextField from './BusquedaTextField';
-import { useQuery } from 'react-query';
+import axios from 'axios';
 
 export default function BusquedaTabPanel(props) {
 	const { handleConsultaCedula } = props;
@@ -23,17 +23,23 @@ export default function BusquedaTabPanel(props) {
 		setSegundoApellido(segundoApellido);
 	};
 
-	const { isLoading, error, data, refetch } = useQuery(
-		'cedulaData',
-		() =>
-			fetch('apiUrl.dummy' + nombre + primerApellido + segundoApellido).then(
-				(res) => {
-					//handleConsultaCedula(res.json());
-					handleConsultaCedula();
-				}
-			),
-		{ enabled: false }
-	);
+	const findPerson = (person) => {
+		const requestOptions = {
+			headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUyOTQ2Njk4LCJpYXQiOjE2NTI5Mjg2OTh9.CIUEloQRYmwn-InlVDdid3syN_LN5FM8HkHBWJcqiyvoLKieN_XmViy7BxV2zqlwAvwTORtlMdS8TVhxyA2rgA',
+			'Content-Type': 'application/json' },
+		};
+		const apiUrl = 'https://smerceudla.herokuapp.com';
+		axios
+			.post(
+				`${apiUrl}/person/findPerson`,
+				JSON.stringify(person),
+				requestOptions
+			)
+			.then((res) => {
+				handleConsultaCedula(res.data);
+			})
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<Grid
@@ -58,14 +64,19 @@ export default function BusquedaTabPanel(props) {
 					color="error"
 					className="consultarButton"
 					sx={{ maxWidth: '150px' }}
-					onClick={() => refetch()}>
+					onClick={() =>
+						findPerson({
+							firstName: nombre,
+							lastName: primerApellido,
+							secondLastName: segundoApellido,
+						})
+					}>
 					Consultar
 				</Button>
-				<label
-					style={{ marginTop: '2rem', fontWeight: 600 }}>
+				<label style={{ marginTop: '2rem', fontWeight: 600 }}>
 					(*) Campos obligatorios
 				</label>
 			</Stack>
 		</Grid>
 	);
-};
+}

@@ -1,58 +1,51 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useQuery } from 'react-query';
+import { Login } from '../services/authenticationService';
 
 export default function LoginView() {
 	const matchesWidth = useMediaQuery('(min-width:750px)');
 	const matchesHeight = useMediaQuery('(min-height:750px)');
 	const [usuario, setUsuario] = useState('');
 	const [password, setPassword] = useState('');
+	const [inProgress, setInProgress] = useState(false);
 	const [open, setOpen] = useState(false);
+	const [error, setError] = useState('');
+	const [severity, setSeverity] = useState('error');
+	let navigate = useNavigate();
 
 	const handleClick = () => {
-		setOpen(true);
+    setInProgress(true);
+		Login(usuario, password)
+			.then((res) => {
+        setInProgress(false);
+				setSeverity('success');
+				setOpen(true);
+				navigate('../../administracion', { replace: true });
+			})
+			.catch((err) => {
+        setInProgress(false);
+				setSeverity('error');
+				setOpen(true);
+				setError(err.message);
+			});
 	};
 
 	const handleClose = (event, reason) => {
 		if (reason === 'clickaway') {
 			return;
 		}
-
 		setOpen(false);
 	};
-
-	const handleUsuario = (usuario) => {
-		setUsuario(usuario);
-	};
-
-	const handlePassword = (usuario) => {
-		setPassword(usuario);
-	};
-
-	const { isLoading, error, data, refetch } = useQuery(
-		'login',
-		() =>
-			fetch('apiUrl.dummy' + usuario + password)
-				.then((res) => {
-					handleClick();
-					console.log(res);
-				})
-				.catch((err) =>
-					handleClick({
-						vertical: 'bottom',
-						horizontal: 'center',
-					})
-				),
-		{ enabled: false }
-	);
 
 	return (
 		<Box
@@ -62,11 +55,9 @@ export default function LoginView() {
 				backgroundColor: 'divider',
 			}}>
 			<Container
-				maxWidth="lg"
+				maxWidth="md"
 				sx={{
 					backgroundColor: 'white',
-					height: matchesHeight ? '45vh' : '70vh',
-					width: matchesWidth ? '40vw' : '90vw',
 					borderRadius: '5px',
 					boxShadow: '2px 2px #888888',
 					paddingTop: '3rem',
@@ -82,7 +73,7 @@ export default function LoginView() {
 						id="outlined-basic"
 						label="Usuario"
 						variant="outlined"
-						onChange={(e) => handleUsuario(e.target.value)}
+						onChange={(e) => setUsuario(e.target.value)}
 						value={usuario}
 					/>
 					<TextField
@@ -90,7 +81,7 @@ export default function LoginView() {
 						label="Contraseña"
 						variant="outlined"
 						type="password"
-						onChange={(e) => handlePassword(e.target.value)}
+						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<Button
 						color="primary"
@@ -99,18 +90,19 @@ export default function LoginView() {
 							textTransform: 'none',
 							fontSize: '18px',
 						}}
-						onClick={() => refetch()}>
+						onClick={handleClick}>
 						Iniciar sesión
 					</Button>
 				</Stack>
+				{inProgress ? <LinearProgress /> : <></>}
 			</Container>
 			<Snackbar
 				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
 				open={open}
 				autoHideDuration={5000}
 				onClose={handleClose}>
-				<Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-					Hubo un fallo al iniciar sesion.
+				<Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+					{error}
 				</Alert>
 			</Snackbar>
 		</Box>

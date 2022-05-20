@@ -33,21 +33,21 @@ export default function ResultsRable(props) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{rows ??
+					{rows ?
 						rows.map((row) => (
 							<TableRow
-								key={row.nombre}
+								key={row.firstName}
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell component="th" scope="row" sx={rowStyles}>
-									{row.cedula}
+									{row.folio}
 								</TableCell>
-								<TableCell sx={rowStyles}>{row.nombre}</TableCell>
-								<TableCell sx={rowStyles}>{row.primerApellido}</TableCell>
-								<TableCell sx={rowStyles}>{row.segundoApellido}</TableCell>
-								<TableCell sx={rowStyles}>{row.institucion}</TableCell>
-								<TableCell sx={rowStyles}>{row.profesion}</TableCell>
+								<TableCell sx={rowStyles}>{row.firstName}</TableCell>
+								<TableCell sx={rowStyles}>{row.lastName}</TableCell>
+								<TableCell sx={rowStyles}>{row.secondLastName}</TableCell>
+								<TableCell sx={rowStyles}>{row.university}</TableCell>
+								<TableCell sx={rowStyles}>{row.career}</TableCell>
 							</TableRow>
-						))}
+						)): <></>}
 				</TableBody>
 			</Table>
 		</TableContainer>

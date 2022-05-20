@@ -8,6 +8,8 @@ import MainView from './views/MainView';
 import './styles/main.css';
 import LoginView from './views/LoginView';
 import AdministrationView from './views/AdministrationView';
+import NotFound from './views/NotFound';
+import Protected from './components/Protected';
 
 const theme = createTheme({
 	status: {
@@ -35,8 +37,23 @@ export default function App() {
 				<Router>
 					<Routes>
 						<Route path="/" element={<MainView />} />
-						<Route path="/login" element={<LoginView />} />
-						<Route path="/administration" element={<AdministrationView />} />
+						<Route
+							path="/login"
+							element={
+								<Protected fallbackTo={<LoginView />}>
+									<MainView />
+								</Protected>
+							}
+						/>
+						<Route
+							path="/administracion"
+							element={
+								<Protected>
+									<AdministrationView />
+								</Protected>
+							}
+						/>
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</Router>
 				<Footer />

@@ -13,23 +13,14 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
 
-
-
 const rows = [
 	{
 		id: 1,
-		lastName: 'Snow',
-		firstName: 'Jon',
-		age: 35,
+		lastName: 'bob',
+		firstName: 'bob',
+		secondName: 'bob',
+		secondLastName: 'bob',
 	},
-	{ id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-	{ id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-	{ id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-	{ id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-	{ id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-	{ id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-	{ id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-	{ id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
 const style = {
@@ -55,32 +46,63 @@ export default function AdministrationView() {
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'firstName',
-      headerName: 'First name',
+      headerName: 'Primer Nombre',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'secondName',
+      headerName: 'Segundo Nombre',
       width: 150,
       editable: true,
     },
     {
       field: 'lastName',
-      headerName: 'Last name',
+      headerName: 'Primer Apellido',
       width: 150,
       editable: true,
     },
     {
-      field: 'age',
-      headerName: 'Age',
+      field: 'secondLastName',
+      headerName: 'Segundo Apellido',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'folio',
+      headerName: 'Folio',
       type: 'number',
       width: 110,
       editable: true,
     },
     {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      field: 'enrolment',
+      headerName: 'Inscripción',
+      type: 'number',
+      width: 110,
+      editable: true,
     },
+    {
+      field: 'carrera',
+      headerName: 'Carrera',
+      width: 150,
+      editable: true,
+    },
+    {
+      field: 'university',
+      headerName: 'Universidad',
+      width: 150,
+      editable: true,
+    },
+    // {
+    //   field: 'fullName',
+    //   headerName: 'Full name',
+    //   description: 'This column has a value getter and is not sortable.',
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (params) =>
+    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    // },
     {
       field: 'edit',
       headerName: '',
@@ -99,35 +121,86 @@ export default function AdministrationView() {
 		<Box
 			className="body"
 			sx={{
-				height: matchesHeight ? '70vh' : '150vh',
+				height: matchesHeight ? '70vh' : '200vh',
 				backgroundColor: 'divider',
 			}}>
 			<Modal
 				open={open}
-				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description">
-				<Box sx={style}>
-					<Typography id="modal-modal-title" variant="h6" component="h2">
+				onClose={handleClose}>
+				<Container sx={style} maxWidth="md">
+					<Typography id="modal-modal-title" variant="h6" component="h2" sx={{marginBottom: '10px'}}>
 						Agregar usuario
 					</Typography>
-					<Stack direction="row" spacing={1}>
+					<Stack direction="column" spacing={2}>
 						<TextField
 							id="outlined-basic"
-							label="Usuario"
+							label="Primer Nombre"
 							variant="outlined"
 							// onChange={(e) => handleUsuario(e.target.value)}
-							// value={usuario}
 						/>
 						<TextField
 							id="outlined-basic"
-							label="Contraseña"
+							label="Segundo Nombre"
 							variant="outlined"
-							// type="password"
 							// onChange={(e) => handlePassword(e.target.value)}
 						/>
+						<TextField
+							id="outlined-basic"
+							label="Primer Apellido"
+							variant="outlined"
+							// onChange={(e) => handlePassword(e.target.value)}
+						/>
+						<TextField
+							id="outlined-basic"
+							label="Segundo Apellido"
+							variant="outlined"
+							// onChange={(e) => handlePassword(e.target.value)}
+						/>
+						<TextField
+							id="outlined-basic"
+							label="Folio"
+							variant="outlined"
+							// onChange={(e) => handlePassword(e.target.value)}
+						/>
+						<TextField
+							id="outlined-basic"
+							label="Inscripción"
+							variant="outlined"
+							// onChange={(e) => handlePassword(e.target.value)}
+						/>
+						<TextField
+							id="outlined-basic"
+							label="Carrera"
+							variant="outlined"
+							// onChange={(e) => handlePassword(e.target.value)}
+						/>
+						<TextField
+							id="outlined-basic"
+							label="Universidad"
+							variant="outlined"
+							// onChange={(e) => handlePassword(e.target.value)}
+						/>
+						<Button
+							color="primary"
+							sx={{
+								fontFamily: 'Montserrat',
+								textTransform: 'none',
+								fontSize: '18px',
+							}}>
+							Agregar
+						</Button>
+						<Button
+							color="error"
+							sx={{
+								fontFamily: 'Montserrat',
+								textTransform: 'none',
+								fontSize: '18px',
+							}}
+							onClick={handleClose}>
+							Cancelar
+						</Button>
 					</Stack>
-				</Box>
+				</Container>
 			</Modal>
 			<Container maxWidth="lg">
 				<Box

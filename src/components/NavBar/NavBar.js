@@ -8,31 +8,38 @@ import Link from '@mui/material/Link';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-const pages = [
-	{
-		content: 'Registro para vacunación',
-		url: 'https://mivacuna.salud.gob.mx/',
-	},
-	{ content: 'Información sobre COVID-19', url: 'https://coronavirus.gob.mx/' },
-	{ content: 'Trámites', url: 'https://www.gob.mx/tramites/otros' },
-	{ content: 'Gobierno', url: 'https://www.gob.mx/gobierno' },
-	{ content: 'Administración', url: '/login' },
-	{
-		content: (
-			<img
-				className="img-fluid"
-				alt="lupa"
-				src="https://framework-gb.cdn.gob.mx/landing/img/lupa.png"
-			/>
-		),
-		url: 'https://www.gob.mx/busqueda?utf8=%E2%9C%93',
-		alt: 'Buscar',
-	},
-];
+import { IsTokenValid } from '../../services/authenticationService';
 
 export default function NavBar() {
 	const [anchorElNav, setAnchorElNav] = useState(null);
+
+	const pages = [
+		{
+			content: 'Registro para vacunación',
+			url: 'https://mivacuna.salud.gob.mx/',
+		},
+		{
+			content: 'Información sobre COVID-19',
+			url: 'https://coronavirus.gob.mx/',
+		},
+		{ content: 'Trámites', url: 'https://www.gob.mx/tramites/otros' },
+		{ content: 'Gobierno', url: 'https://www.gob.mx/gobierno' },
+		{
+			content: 'Administración',
+			url: IsTokenValid() ? '/administracion' : '/login',
+		},
+		{
+			content: (
+				<img
+					className="img-fluid"
+					alt="lupa"
+					src="https://framework-gb.cdn.gob.mx/landing/img/lupa.png"
+				/>
+			),
+			url: 'https://www.gob.mx/busqueda?utf8=%E2%9C%93',
+			alt: 'Buscar',
+		},
+	];
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -107,7 +114,7 @@ export default function NavBar() {
 								flexGrow: 1,
 								display: { xs: 'none', md: 'none', lg: 'flex' },
 							}}>
-							<IconButton href='/'>
+							<IconButton href="/">
 								<img
 									width={150}
 									height={35}
