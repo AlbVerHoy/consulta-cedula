@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import BusquedaTextField from './BusquedaTextField';
-import axios from 'axios';
+import { FindPerson } from '../../../services/personService';
 
 export default function BusquedaTabPanel(props) {
 	const { handleConsultaCedula } = props;
@@ -23,22 +23,9 @@ export default function BusquedaTabPanel(props) {
 		setSegundoApellido(segundoApellido);
 	};
 
-	const findPerson = (person) => {
-		const requestOptions = {
-			headers: { Authorization: 'Bearer ',
-			'Content-Type': 'application/json' },
-		};
-		const apiUrl = 'https://smerceudla.herokuapp.com';
-		axios
-			.post(
-				`${apiUrl}/person/findPerson`,
-				JSON.stringify(person),
-				requestOptions
-			)
-			.then((res) => {
-				handleConsultaCedula(res.data);
-			})
-			.catch((err) => console.log(err));
+	const onConsultarHandle = async (person) => {
+		const personResponse = await FindPerson(person);
+		if (personResponse) handleConsultaCedula(personResponse);
 	};
 
 	return (
@@ -65,7 +52,7 @@ export default function BusquedaTabPanel(props) {
 					className="consultarButton"
 					sx={{ maxWidth: '150px' }}
 					onClick={() =>
-						findPerson({
+						onConsultarHandle({
 							firstName: nombre,
 							lastName: primerApellido,
 							secondLastName: segundoApellido,

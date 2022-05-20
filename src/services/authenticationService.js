@@ -6,14 +6,12 @@ const apiUrl = 'https://smerceudla.herokuapp.com';
 export const Login = (username, password) =>
 	new Promise((resolve, reject) => {
 		const requestOptions = {
+			url: `${apiUrl}/authenticate`,
+			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
+			data: JSON.stringify({ username, password }),
 		};
-		axios
-			.post(
-				`${apiUrl}/authenticate`,
-				JSON.stringify({ username, password }),
-				requestOptions
-			)
+		axios(requestOptions)
 			.then((res) => {
 				localStorage.setItem('accessToken', JSON.stringify(res.data));
 				resolve(res);
@@ -37,20 +35,19 @@ export const IsTokenValid = () => {
 	return expDate >= dateNow;
 };
 
-// export const Auth = async () =>
-// 	new Promise((resolve, reject) => {
-// 		const requestOptions = {
-// 			headers: { 'Content-Type': 'application/json' },
-// 		};
-// 		axios
-// 			.post(
-// 				`${apiUrl}/authenticate`,
-// 				JSON.stringify({ ${process.env.username}, ${process.env.password} }),
-// 				requestOptions
-// 			)
-// 			.then((res) => {
-// 				localStorage.setItem('accessToken', JSON.stringify(res.data));
-// 				resolve(res);
-// 			})
-// 			.catch((err) => reject(Error(err)));
-// 	});
+export async function Auth() {
+	if (IsTokenValid()) return JSON.parse(localStorage.getItem('accessToken')).token;
+	const requestOptions = {
+		method: 'POST',
+		url: `${apiUrl}/authenticate`,
+		headers: { 'Content-Type': 'application/json' },
+		data: JSON.stringify({  }),
+	};
+	try {
+		const res = await axios(requestOptions);
+		return res.data.token;
+	} catch (e) {
+		console.log(e);
+		return undefined;
+	}
+}

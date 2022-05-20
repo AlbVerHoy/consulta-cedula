@@ -13,7 +13,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Login } from '../services/authenticationService';
 
 export default function LoginView() {
-	const matchesWidth = useMediaQuery('(min-width:750px)');
 	const matchesHeight = useMediaQuery('(min-height:750px)');
 	const [usuario, setUsuario] = useState('');
 	const [password, setPassword] = useState('');

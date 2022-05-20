@@ -24,7 +24,7 @@ export default function ResultsRable(props) {
 			<Table sx={{ minWidth: 650 }} aria-label="simple table">
 				<TableHead>
 					<TableRow>
-						<TableCell sx={headerStyles}>Cédula</TableCell>
+						<TableCell sx={headerStyles}>Folio</TableCell>
 						<TableCell sx={headerStyles}>Nombre</TableCell>
 						<TableCell sx={headerStyles}>Primer apellido</TableCell>
 						<TableCell sx={headerStyles}>Segundo apellido</TableCell>
