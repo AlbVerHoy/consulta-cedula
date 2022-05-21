@@ -119,7 +119,7 @@ export default function NavBar() {
 									width={150}
 									height={35}
 									alt="logoheader"
-									src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg"
+									src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" 
 								/>
 							</IconButton>
 							<Stack
