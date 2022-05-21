@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { decodeToken } from 'react-jwt';
-
-const apiUrl = 'https://smerceudla.herokuapp.com';
+import { apiUrl, username, password } from '../config/Config';
 
 export const Login = (username, password) =>
 	new Promise((resolve, reject) => {
@@ -36,12 +35,13 @@ export const IsTokenValid = () => {
 };
 
 export async function Auth() {
-	if (IsTokenValid()) return JSON.parse(localStorage.getItem('accessToken')).token;
+	if (IsTokenValid())
+		return JSON.parse(localStorage.getItem('accessToken')).token;
 	const requestOptions = {
 		method: 'POST',
 		url: `${apiUrl}/authenticate`,
 		headers: { 'Content-Type': 'application/json' },
-		data: JSON.stringify({  }),
+		data: JSON.stringify({ username, password }),
 	};
 	try {
 		const res = await axios(requestOptions);

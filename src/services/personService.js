@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Auth } from './authenticationService';
-
-const apiUrl = 'https://smerceudla.herokuapp.com';
+import { apiUrl } from '../config/Config';
 
 export const FindPerson = async (person) => {
 	const token = await Auth();
