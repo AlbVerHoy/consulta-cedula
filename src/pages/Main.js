@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import CedulaTabs from '../components/CedulaTabs/CedulaTabs';
 import TextBody from '../components/TextArea/TextBody';
 
-export default function MainView() {
+export default function Main() {
   return (
     <Box className="body">
       <TextArea title="¿Qué es una Cédula Profesional?" spacing={2}>

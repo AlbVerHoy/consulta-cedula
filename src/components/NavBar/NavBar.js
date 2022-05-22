@@ -96,10 +96,10 @@ export default function NavBar() {
 								{pages.map((page) => (
 									<MenuItem key={page.content}>
 										<Link
+											key={page.content + 'link'}
 											textAlign="center"
 											href={page.url}
 											underline={'none'}
-											target="_blank"
 											rel="noopener">
 											{page.alt ? page.alt : page.content}
 										</Link>
@@ -132,8 +132,7 @@ export default function NavBar() {
 								}}>
 								{pages.map((page) => (
 									<Link
-										target="_blank"
-										rel="noopener"
+										key={page.content}
 										className="navBarButton"
 										href={page.url}
 										underline={'none'}

@@ -4,11 +4,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
-import MainView from './views/MainView';
+import Main from './pages/Main';
 import './styles/main.css';
-import LoginView from './views/LoginView';
-import AdministrationView from './views/AdministrationView';
-import NotFound from './views/NotFound';
+import Login from './pages/Login';
+import Administration from './pages/Administration';
+import NotFound from './pages/NotFound';
 import Protected from './components/Protected';
 
 const theme = createTheme({
@@ -36,12 +36,12 @@ export default function App() {
 				<NavBar />
 				<Router>
 					<Routes>
-						<Route path="/" element={<MainView />} />
+						<Route path="/" element={<Main />} />
 						<Route
 							path="/login"
 							element={
-								<Protected fallbackTo={<LoginView />}>
-									<MainView />
+								<Protected fallbackTo={<Login />}>
+									<Main />
 								</Protected>
 							}
 						/>
@@ -49,7 +49,7 @@ export default function App() {
 							path="/administracion"
 							element={
 								<Protected>
-									<AdministrationView />
+									<Administration />
 								</Protected>
 							}
 						/>
