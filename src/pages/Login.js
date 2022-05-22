@@ -15,7 +15,9 @@ import { Login } from '../services/authenticationService';
 export default function LoginView() {
 	const matchesHeight = useMediaQuery('(min-height:750px)');
 	const [usuario, setUsuario] = useState('');
+	const [usuarioError, setUsuarioError] = useState(false);
 	const [password, setPassword] = useState('');
+	const [passwordError, setPasswordError] = useState(false);
 	const [inProgress, setInProgress] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [error, setError] = useState('');
@@ -23,19 +25,34 @@ export default function LoginView() {
 	let navigate = useNavigate();
 
 	const handleClick = () => {
-    setInProgress(true);
+		let anyErrors = false;
+		if (usuario.length === 0) {
+			setUsuarioError(true);
+			anyErrors = true;
+		}
+		if (password.length === 0) {
+			setPasswordError(true);
+			anyErrors = true;
+		}
+		if (anyErrors) {
+			setError('Usuario y contraseña son requeridos.');
+			setSeverity('error');
+			setOpen(true);
+			return;
+		}
+		setInProgress(true);
 		Login(usuario, password)
 			.then((res) => {
-        setInProgress(false);
+				setInProgress(false);
 				setSeverity('success');
 				setOpen(true);
 				navigate('../../administracion', { replace: true });
 			})
 			.catch((err) => {
-        setInProgress(false);
+				setInProgress(false);
 				setSeverity('error');
 				setOpen(true);
-				setError(err.message);
+				setError('Error al iniciar sesión.');
 			});
 	};
 
@@ -44,6 +61,24 @@ export default function LoginView() {
 			return;
 		}
 		setOpen(false);
+	};
+
+	const handleOnChangeUsuario = (value) => {
+		setUsuario(value);
+		if (value.length === 0) {
+			setUsuarioError(true);
+			return;
+		}
+		setUsuarioError(false);
+	};
+
+	const handleOnChangePassword = (value) => {
+		setPassword(value);
+		if (value.length === 0) {
+			setPasswordError(true);
+			return;
+		}
+		setPasswordError(false);
 	};
 
 	return (
@@ -72,7 +107,8 @@ export default function LoginView() {
 						id="outlined-basic"
 						label="Usuario"
 						variant="outlined"
-						onChange={(e) => setUsuario(e.target.value)}
+						error={usuarioError}
+						onChange={(e) => handleOnChangeUsuario(e.target.value)}
 						value={usuario}
 					/>
 					<TextField
@@ -80,7 +116,8 @@ export default function LoginView() {
 						label="Contraseña"
 						variant="outlined"
 						type="password"
-						onChange={(e) => setPassword(e.target.value)}
+						error={passwordError}
+						onChange={(e) => handleOnChangePassword(e.target.value)}
 					/>
 					<Button
 						color="primary"
