@@ -34,6 +34,7 @@ const style = {
 export default function AdministrationView() {
 	const matchesHeight = useMediaQuery('(min-height:550px)');
 	const [open, setOpen] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const [firstName, setFirstName] = useState('');
 	const [secondName, setSecondName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -112,6 +113,8 @@ export default function AdministrationView() {
 	};
 
 	const handleAgregar = async () => {
+		setIsLoading(true);
+		setOpen(false);
 		const person =
 			modalButtonText === 'Actualizar'
 				? selectedRow
@@ -128,18 +131,21 @@ export default function AdministrationView() {
 		CreatePerson(person).then(() => {
 			RefreshPersons();
 		});
-		setOpen(false);
+		setIsLoading(false);
 	};
 
 	const handleBorrar = async () => {
 		if (Object.entries(selectedRow).length === 0) return;
+		setIsLoading(true);
 		DeletePerson(selectedRow).then(() => {
 			RefreshPersons();
 		});
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
 		RefreshPersons();
+		setIsLoading(false);
 	}, []);
 
 	return (
@@ -354,6 +360,7 @@ export default function AdministrationView() {
 						</IconButton>
 					</Stack>
 					<DataGrid
+						loading={isLoading}
 						rows={rows}
 						columns={columns}
 						pageSize={10}
