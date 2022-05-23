@@ -127,7 +127,6 @@ export default function BusquedaTabPanel(props) {
 						(*) Campos obligatorios
 					</label>
 				</Stack>
-				<LinearProgress />
 			</Grid>
 			{inProgress ? <LinearProgress /> : <></>}
 		</>
