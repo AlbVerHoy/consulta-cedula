@@ -128,6 +128,10 @@ export default function AdministrationView() {
 						career,
 						university,
 				  };
+		var personProps = Object.keys(person);
+		personProps.map((personProp) => {
+			person[personProp] = person[personProp].trim();
+		});
 		CreatePerson(person).then(() => {
 			RefreshPersons();
 		});
