@@ -131,6 +131,15 @@ export default function AdministrationView() {
 		CreatePerson(person).then(() => {
 			RefreshPersons();
 		});
+		setFirstName('');
+		setLastName('');
+		setSecondName('');
+		setSecondLastName('');
+		setFolio('');
+		setCareer('');
+		setEnrolment('');
+		setUniversity('');
+		setSelectedRow({});
 		setIsLoading(false);
 	};
 

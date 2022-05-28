@@ -29,7 +29,7 @@ export default function ResultsRable(props) {
 						<TableCell sx={headerStyles}>Primer apellido</TableCell>
 						<TableCell sx={headerStyles}>Segundo apellido</TableCell>
 						<TableCell sx={headerStyles}>Institución</TableCell>
-						<TableCell sx={headerStyles}>Profesión</TableCell>
+						<TableCell sx={headerStyles}>Carrera</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
