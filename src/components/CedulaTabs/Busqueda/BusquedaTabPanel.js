@@ -29,7 +29,8 @@ export default function BusquedaTabPanel(props) {
 		setNombreErrText('');
 		setNombreError(false);
 		var nombres = nombre.split(' ');
-		setNombre(nombre[0]);
+		setNombre(nombres[0]);
+		console.log(nombres)
 		if (nombres.length > 1) setSegundoNombre(nombres[1]);
 	};
 
