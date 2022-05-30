@@ -36,7 +36,6 @@ export default function AdministrationView() {
 	const [open, setOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [firstName, setFirstName] = useState('');
-	const [secondName, setSecondName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [secondLastName, setSecondLastName] = useState('');
 	const [folio, setFolio] = useState('');
@@ -52,11 +51,6 @@ export default function AdministrationView() {
 		{
 			field: 'firstName',
 			headerName: 'Primer Nombre',
-			width: 150,
-		},
-		{
-			field: 'secondName',
-			headerName: 'Segundo Nombre',
 			width: 150,
 		},
 		{
@@ -120,7 +114,6 @@ export default function AdministrationView() {
 				? selectedRow
 				: {
 						firstName,
-						secondName,
 						lastName,
 						secondLastName,
 						folio,
@@ -128,16 +121,15 @@ export default function AdministrationView() {
 						career,
 						university,
 				  };
-		var personProps = Object.keys(person);
-		personProps.map((personProp) => {
-			person[personProp] = person[personProp].trim();
-		});
+		// var personProps = Object.keys(person);
+		// personProps.map((personProp) => {
+		// 	person[personProp] = person[personProp].trim();
+		// });
 		CreatePerson(person).then(() => {
 			RefreshPersons();
 		});
 		setFirstName('');
 		setLastName('');
-		setSecondName('');
 		setSecondLastName('');
 		setFolio('');
 		setCareer('');
@@ -184,7 +176,7 @@ export default function AdministrationView() {
 					<Stack direction="column" spacing={2}>
 						<TextField
 							id="outlined-basic"
-							label="Primer Nombre"
+							label="Nombre(s)"
 							variant="outlined"
 							defaultValue={
 								modalButtonText === 'Actualizar' && selectedRow
@@ -198,24 +190,6 @@ export default function AdministrationView() {
 											firstName: e.target.value,
 									  }))
 									: setFirstName(e.target.value)
-							}
-						/>
-						<TextField
-							id="outlined-basic"
-							label="Segundo Nombre"
-							variant="outlined"
-							defaultValue={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.secondName
-									: secondName
-							}
-							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											secondName: e.target.value,
-									  }))
-									: setSecondName(e.target.value)
 							}
 						/>
 						<TextField

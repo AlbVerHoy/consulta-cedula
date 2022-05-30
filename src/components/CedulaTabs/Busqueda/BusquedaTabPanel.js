@@ -9,7 +9,6 @@ import LinearProgress from '@mui/material/LinearProgress';
 export default function BusquedaTabPanel(props) {
 	const { handleConsultaCedula } = props;
 	const [nombre, setNombre] = useState('');
-	const [segundoNombre, setSegundoNombre] = useState('');
 	const [nombreError, setNombreError] = useState(false);
 	const [nombreErrText, setNombreErrText] = useState('');
 	const [primerApellido, setPrimerApellido] = useState('');
@@ -28,10 +27,7 @@ export default function BusquedaTabPanel(props) {
 		}
 		setNombreErrText('');
 		setNombreError(false);
-		var nombres = nombre.split(' ');
-		setNombre(nombres[0]);
-		console.log(nombres)
-		if (nombres.length > 1) setSegundoNombre(nombres[1]);
+		setNombre(nombre);
 	};
 
 	const handlePrimerApellido = (primerApellido) => {
@@ -121,7 +117,6 @@ export default function BusquedaTabPanel(props) {
 						onClick={() =>
 							onConsultarHandle({
 								firstName: nombre,
-								secondName: segundoNombre,
 								lastName: primerApellido,
 								secondLastName: segundoApellido,
 							})
