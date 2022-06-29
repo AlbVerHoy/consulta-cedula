@@ -18,18 +18,17 @@ jobs:
     - uses: Azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Docker login
-      uses: azure/docker-login@v1
+    - name: Docker Login
+      uses: docker/login-action@v2.0.0
       with:
-        login-server: albverhoy.azurecr.io
-        username: ${{ secrets.AZURECR_USERNAME}}
-        password: ${{ secrets.AZURECR_PASSWORD }}
+        username: ${{ secrets.DOCKER_USR }}
+        password: ${{ secrets.DOCKER_PWD }}
     - run: |
-        docker build . -t albverhoy.azurecr.io/consulta-celda:${{ github.sha }}
-        docker push albverhoy.azurecr.io/consulta-celda:${{ github.sha }}     
+        docker build . -t ${{ secrets.DOCKER_USR }}/consulta-celda:${{ github.sha }}
+        docker push ${{ secrets.DOCKER_USR }}/consulta-celda:${{ github.sha }}     
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'consulta-celda'
-        images: 'albverhoy.azurecr.io/consulta-celda:${{ github.sha }}'
+        images: '${{ secrets.DOCKER_USR }}/consulta-celda:${{ github.sha }}'
         
