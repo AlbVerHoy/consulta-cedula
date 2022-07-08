@@ -58,7 +58,6 @@ export default function CedulaTabs() {
 						spacing={2}>
 						<Tab label="Búsqueda" {...a11yProps(0)} sx={tabStyles} />
 						<Tab label="Resultados" {...a11yProps(1)} sx={tabStyles} />
-						{/* <Tab label="Detalle" {...a11yProps(2)} sx={tabStyles} /> */}
 					</Tabs>
 				</Box>
 				<TabPanel value={value} index={0} title="Datos de consulta">
@@ -66,9 +65,6 @@ export default function CedulaTabs() {
 				</TabPanel>
 				<TabPanel value={value} index={1} title="Resultados de búsqueda">
 					<ResultsRable rows={data} />
-				</TabPanel>
-				<TabPanel value={value} index={2}>
-					Detalle
 				</TabPanel>
 			</Box>
 		</Container>

@@ -18,6 +18,7 @@ import {
 	DeletePerson,
 	FindAllPersons,
 } from '../services/personService';
+import AdministrationTabs from '../components/Administration/AdministrationTabs';
 
 const style = {
 	position: 'absolute',
@@ -42,6 +43,7 @@ export default function AdministrationView() {
 	const [enrolment, setEnrolment] = useState('');
 	const [career, setCareer] = useState('');
 	const [university, setUniversity] = useState('');
+	const [isCedula, setIsCedula] = useState(false);
 	const [rows, setRows] = useState([]);
 	const [selectedRow, setSelectedRow] = useState({});
 	const [modalTitle, setModalTitle] = useState('Agregar Usuario');
@@ -85,7 +87,8 @@ export default function AdministrationView() {
 		},
 	];
 
-	const handleOpen = (type) => {
+	const handleOpen = (type, isTabCedula) => {
+		setIsCedula(isTabCedula);
 		if (type === 'create') {
 			setModalTitle('Agregar Usuario');
 			setModalButtonText('Agregar');
@@ -121,10 +124,6 @@ export default function AdministrationView() {
 						career,
 						university,
 				  };
-		// var personProps = Object.keys(person);
-		// personProps.map((personProp) => {
-		// 	person[personProp] = person[personProp].trim();
-		// });
 		CreatePerson(person).then(() => {
 			RefreshPersons();
 		});
@@ -135,7 +134,7 @@ export default function AdministrationView() {
 		setCareer('');
 		setEnrolment('');
 		setUniversity('');
-		setSelectedRow({});
+		//setSelectedRow({});
 		setIsLoading(false);
 	};
 
@@ -157,7 +156,7 @@ export default function AdministrationView() {
 		<Box
 			className="body"
 			sx={{
-				height: matchesHeight ? '70vh' : '200vh',
+				height: matchesHeight ? '80vh' : '200vh',
 				backgroundColor: 'divider',
 			}}>
 			<Modal open={open} onClose={handleClose}>
@@ -300,6 +299,28 @@ export default function AdministrationView() {
 									: setUniversity(e.target.value)
 							}
 						/>
+						{!isCedula ? (
+							<TextField
+								id="outlined-basic"
+								label="Url"
+								variant="outlined"
+								value={
+									modalButtonText === 'Actualizar' && selectedRow
+										? selectedRow.university
+										: university
+								}
+								onChange={(e) =>
+									modalButtonText === 'Actualizar'
+										? setSelectedRow((prevState) => ({
+												...prevState,
+												university: e.target.value,
+										  }))
+										: setUniversity(e.target.value)
+								}
+							/>
+						) : (
+							<></>
+						)}
 						<Button
 							color="primary"
 							sx={{
@@ -324,44 +345,91 @@ export default function AdministrationView() {
 				</Container>
 			</Modal>
 			<Container maxWidth="lg">
-				<Box
-					style={{
-						height: 450,
-						width: '100%',
-						backgroundColor: 'white',
-						borderRadius: '5px',
-						padding: '5px',
-					}}>
-					<Stack direction="row" spacing={1}>
-						<IconButton onClick={() => handleOpen('create')}>
-							<AddIcon />
-						</IconButton>
-						<IconButton onClick={handleBorrar}>
-							<RemoveIcon />
-						</IconButton>
-						<IconButton onClick={() => handleOpen('update')}>
-							<EditIcon />
-						</IconButton>
-						<IconButton onClick={RefreshPersons}>
-							<RefreshIcon />
-						</IconButton>
-					</Stack>
-					<DataGrid
-						loading={isLoading}
-						rows={rows}
-						columns={columns}
-						pageSize={10}
-						rowsPerPageOptions={[10]}
-						onSelectionModelChange={(id) => {
-							const selectedId = new Set(id);
-							const selectedRowData = rows.filter((row) =>
-								selectedId.has(row.id.toString())
-							);
-							setSelectedRow(selectedRowData[0]);
-						}}
-						sx={{ height: 400, overflow: 'scroll' }}
-					/>
-				</Box>
+				<AdministrationTabs>
+					<Box
+						style={{
+							height: 450,
+							width: '100%',
+							backgroundColor: 'white',
+							borderRadius: '5px',
+							padding: '5px',
+						}}>
+						<Stack direction="row" spacing={1}>
+							<IconButton onClick={() => handleOpen('create', true)}>
+								<AddIcon />
+							</IconButton>
+							<IconButton onClick={handleBorrar}>
+								<RemoveIcon />
+							</IconButton>
+							<IconButton onClick={() => handleOpen('update', true)}>
+								<EditIcon />
+							</IconButton>
+							<IconButton onClick={RefreshPersons}>
+								<RefreshIcon />
+							</IconButton>
+						</Stack>
+						<DataGrid
+							loading={isLoading}
+							rows={rows}
+							columns={columns}
+							pageSize={10}
+							rowsPerPageOptions={[10]}
+							onSelectionModelChange={(id) => {
+								const selectedId = new Set(id);
+								const selectedRowData = rows.filter((row) =>
+									selectedId.has(row.id.toString())
+								);
+								setSelectedRow(selectedRowData[0]);
+							}}
+							sx={{ height: 400, overflow: 'scroll' }}
+						/>
+					</Box>
+					<Box
+						style={{
+							height: 450,
+							width: '100%',
+							backgroundColor: 'white',
+							borderRadius: '5px',
+							padding: '5px',
+						}}>
+						<Stack direction="row" spacing={1}>
+							<IconButton onClick={() => handleOpen('create', false)}>
+								<AddIcon />
+							</IconButton>
+							<IconButton onClick={handleBorrar}>
+								<RemoveIcon />
+							</IconButton>
+							<IconButton onClick={() => handleOpen('update', false)}>
+								<EditIcon />
+							</IconButton>
+							<IconButton onClick={RefreshPersons}>
+								<RefreshIcon />
+							</IconButton>
+						</Stack>
+						<DataGrid
+							loading={isLoading}
+							rows={[]}
+							columns={[
+								...columns,
+								{
+									field: 'url',
+									headerName: 'Url',
+									width: 150,
+								},
+							]}
+							pageSize={10}
+							rowsPerPageOptions={[10]}
+							onSelectionModelChange={(id) => {
+								const selectedId = new Set(id);
+								const selectedRowData = rows.filter((row) =>
+									selectedId.has(row.id.toString())
+								);
+								setSelectedRow(selectedRowData[0]);
+							}}
+							sx={{ height: 400, overflow: 'scroll' }}
+						/>
+					</Box>
+				</AdministrationTabs>
 			</Container>
 		</Box>
 	);

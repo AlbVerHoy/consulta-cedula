@@ -8,6 +8,7 @@ import Main from './pages/Main';
 import './styles/main.css';
 import Login from './pages/Login';
 import Administration from './pages/Administration';
+import DigitalDocuments from './pages/DigitalDocuments';
 import NotFound from './pages/NotFound';
 import Protected from './components/Protected';
 
@@ -53,6 +54,7 @@ export default function App() {
 								</Protected>
 							}
 						/>
+						<Route path="/documentos-digitales" element={<DigitalDocuments />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</Router>

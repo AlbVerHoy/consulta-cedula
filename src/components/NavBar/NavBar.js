@@ -15,8 +15,8 @@ export default function NavBar() {
 
 	const pages = [
 		{
-			content: 'Registro para vacunación',
-			url: 'https://mivacuna.salud.gob.mx/',
+			content: 'Documentos Digitales',
+			url: '/documentos-digitales',
 		},
 		{
 			content: 'Información sobre COVID-19',
