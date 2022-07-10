@@ -11,10 +11,13 @@ import EditIcon from '@mui/icons-material/Edit';
 export default function AdministrationDataGrid({
 	rows,
 	columns,
-	setSelectedRow,
-  handleOpen,
-  handleBorrar,
-  refreshData
+	handleAddClick,
+	handleEditClick,
+	handleBorrar,
+	refreshData,
+	isTabCedula,
+	setSelectionModel,
+	selectionModel,
 }) {
 	return (
 		<Box
@@ -26,13 +29,13 @@ export default function AdministrationDataGrid({
 				padding: '5px',
 			}}>
 			<Stack direction="row" spacing={1}>
-				<IconButton onClick={() => handleOpen('create', false)}>
+				<IconButton onClick={() => handleAddClick(isTabCedula)}>
 					<AddIcon />
 				</IconButton>
 				<IconButton onClick={handleBorrar}>
 					<RemoveIcon />
 				</IconButton>
-				<IconButton onClick={() => handleOpen('update', false)}>
+				<IconButton onClick={() => handleEditClick(isTabCedula)}>
 					<EditIcon />
 				</IconButton>
 				<IconButton onClick={refreshData}>
@@ -44,13 +47,8 @@ export default function AdministrationDataGrid({
 				columns={columns}
 				pageSize={10}
 				rowsPerPageOptions={[10]}
-				onSelectionModelChange={(id) => {
-					const selectedId = new Set(id);
-					const selectedRowData = rows.filter((row) =>
-						selectedId.has(row.id.toString())
-					);
-					setSelectedRow(selectedRowData[0]);
-				}}
+				onSelectionModelChange={setSelectionModel}
+				selectionModel={selectionModel}
 				sx={{ height: 400, overflow: 'scroll' }}
 			/>
 		</Box>

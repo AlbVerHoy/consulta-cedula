@@ -2,16 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { DataGrid } from '@mui/x-data-grid';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
 import {
 	CreatePerson,
@@ -39,7 +33,7 @@ export default function AdministrationView() {
 	const [isCedula, setIsCedula] = useState(false);
 	const [rows, setRows] = useState([]);
 	const [certificateRows, setCertificateRows] = useState([]);
-	const [selectedRow, setSelectedRow] = useState({
+	const [user, setUser] = useState({
 		firstName: '',
 		lastName: '',
 		secondLastName: '',
@@ -50,6 +44,10 @@ export default function AdministrationView() {
 	});
 	const [modalTitle, setModalTitle] = useState('Agregar Usuario');
 	const [modalButtonText, setModalButtonText] = useState('Agregar');
+	const [selectionModel, setSelectionModel] = useState([]);
+	const [certificateSelectionModel, setCertificateSelectionModel] = useState(
+		[]
+	);
 
 	const columns = [
 		{
@@ -89,25 +87,53 @@ export default function AdministrationView() {
 		},
 	];
 
-	const handleOpen = (type, isTabCedula) => {
+	const handleAddClick = (isTabCedula) => {
 		setIsCedula(isTabCedula);
-		if (type === 'create') {
-			setModalTitle('Agregar Usuario');
-			setModalButtonText('Agregar');
-		} else if (type === 'update') {
-			if (Object.entries(selectedRow).length === 0) return;
-			setModalTitle('Actualizar Usuario');
-			setModalButtonText('Actualizar');
-		}
+		setUser({
+			firstName: '',
+			lastName: '',
+			secondLastName: '',
+			folio: '',
+			enrolment: '',
+			career: '',
+			university: '',
+			url: '',
+		});
+		setModalTitle('Agregar Usuario');
+		setModalButtonText('Agregar');
 		setOpen(true);
 	};
-	const handleClose = () => setOpen(false);
+
+	const handleEditClick = (isTabCedula) => {
+		if (selectionModel.length === 0) return;
+		setIsCedula(isTabCedula);
+		setModalTitle('Actualizar Usuario');
+		setModalButtonText('Actualizar');
+		var rowToEdit = isTabCedula
+			? rows.find((row) => row.id === selectionModel[0])
+			: certificateRows.find((row) => row.id === selectionModel[0]);
+		setUser(rowToEdit);
+		setOpen(true);
+	};
+
+	const handleCertificateEditClick = (isTabCedula) => {
+		if (certificateSelectionModel.length === 0) return;
+		setIsCedula(isTabCedula);
+		setModalTitle('Actualizar Usuario');
+		setModalButtonText('Actualizar');
+		var rowToEdit = certificateRows.find((row) => row.id === certificateSelectionModel[0]);
+		setUser(rowToEdit);
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 	const RefreshPersons = () => {
 		FindAllPersons().then((res) => {
 			setRows([]);
 			setCertificateRows([]);
-			if (!res) return;
 			res.forEach((person) => {
 				if (!person.url) {
 					setRows((oldRows) => [...oldRows, person]);
@@ -122,25 +148,34 @@ export default function AdministrationView() {
 		});
 	};
 
-	const handleAgregar = async () => {
-		setOpen(false);
-		CreatePerson(selectedRow).then(() => {
+	const handleCedulaAdd = async () => {
+		CreatePerson(user).then(() => {
 			RefreshPersons();
-		});
-		setSelectedRow({
-			firstName: '',
-			lastName: '',
-			secondLastName: '',
-			folio: '',
-			enrolment: '',
-			career: '',
-			university: '',
+			setOpen(false);
 		});
 	};
 
-	const handleBorrar = async () => {
-		if (Object.entries(selectedRow).length === 0) return;
-		DeletePerson(selectedRow).then(() => {
+	const handleCertificateAdd = async () => {
+		CreatePerson(user).then(() => {
+			RefreshPersons();
+			setOpen(false);
+		});
+	};
+
+	const handleCedulaDelete = async () => {
+		if (selectionModel.length === 0) return;
+		var rowToDelete = rows.find((row) => row.id === selectionModel[0]);
+		DeletePerson(rowToDelete).then(() => {
+			RefreshPersons();
+		});
+	};
+
+	const handleCertificateDelete = async () => {
+		if (certificateSelectionModel.length === 0) return;
+		var rowToDelete = certificateRows.find(
+			(row) => row.id === certificateSelectionModel[0]
+		);
+		DeletePerson(rowToDelete).then(() => {
 			RefreshPersons();
 		});
 	};
@@ -174,9 +209,9 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Nombre(s)"
 							variant="outlined"
-							defaultValue={selectedRow.firstName}
+							defaultValue={user.firstName}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									firstName: e.target.value,
 								}))
@@ -186,9 +221,9 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Primer Apellido"
 							variant="outlined"
-							value={selectedRow.lastName}
+							value={user.lastName}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									lastName: e.target.value,
 								}))
@@ -198,9 +233,9 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Segundo Apellido"
 							variant="outlined"
-							value={selectedRow.secondLastName}
+							value={user.secondLastName}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									secondLastName: e.target.value,
 								}))
@@ -210,9 +245,9 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Folio"
 							variant="outlined"
-							value={selectedRow.folio}
+							value={user.folio}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									folio: e.target.value,
 								}))
@@ -222,9 +257,9 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Inscripción"
 							variant="outlined"
-							value={selectedRow.enrolment}
+							value={user.enrolment}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									enrolment: e.target.value,
 								}))
@@ -234,9 +269,9 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Carrera"
 							variant="outlined"
-							value={selectedRow.career}
+							value={user.career}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									career: e.target.value,
 								}))
@@ -246,40 +281,51 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Universidad"
 							variant="outlined"
-							value={selectedRow.university}
+							value={user.university}
 							onChange={(e) =>
-								setSelectedRow((prevState) => ({
+								setUser((prevState) => ({
 									...prevState,
 									university: e.target.value,
 								}))
 							}
 						/>
 						{!isCedula ? (
-							<TextField
-								id="outlined-basic"
-								label="Url"
-								variant="outlined"
-								value={selectedRow.url}
-								onChange={(e) =>
-									setSelectedRow((prevState) => ({
-										...prevState,
-										url: e.target.value,
-									}))
-								}
-							/>
+							<>
+								<TextField
+									id="outlined-basic"
+									label="Url"
+									variant="outlined"
+									value={user.url}
+									onChange={(e) =>
+										setUser((prevState) => ({
+											...prevState,
+											url: e.target.value,
+										}))
+									}
+								/>
+								<Button
+									color="primary"
+									sx={{
+										fontFamily: 'Montserrat',
+										textTransform: 'none',
+										fontSize: '18px',
+									}}
+									onClick={handleCertificateAdd}>
+									{modalButtonText}
+								</Button>
+							</>
 						) : (
-							<></>
+							<Button
+								color="primary"
+								sx={{
+									fontFamily: 'Montserrat',
+									textTransform: 'none',
+									fontSize: '18px',
+								}}
+								onClick={handleCedulaAdd}>
+								{modalButtonText}
+							</Button>
 						)}
-						<Button
-							color="primary"
-							sx={{
-								fontFamily: 'Montserrat',
-								textTransform: 'none',
-								fontSize: '18px',
-							}}
-							onClick={handleAgregar}>
-							{modalButtonText}
-						</Button>
 						<Button
 							color="error"
 							sx={{
@@ -295,87 +341,17 @@ export default function AdministrationView() {
 			</Modal>
 			<Container maxWidth="lg">
 				<AdministrationTabs>
-					<Box
-						style={{
-							height: 450,
-							width: '100%',
-							backgroundColor: 'white',
-							borderRadius: '5px',
-							padding: '5px',
-						}}>
-						<Stack direction="row" spacing={1}>
-							<IconButton onClick={() => handleOpen('create', true)}>
-								<AddIcon />
-							</IconButton>
-							<IconButton onClick={handleBorrar}>
-								<RemoveIcon />
-							</IconButton>
-							<IconButton onClick={() => handleOpen('update', true)}>
-								<EditIcon />
-							</IconButton>
-							<IconButton onClick={RefreshPersons}>
-								<RefreshIcon />
-							</IconButton>
-						</Stack>
-						<DataGrid
-							rows={rows}
-							columns={columns}
-							pageSize={10}
-							rowsPerPageOptions={[10]}
-							onSelectionModelChange={(id) => {
-								const selectedId = new Set(id);
-								const selectedRowData = rows.filter((row) =>
-									selectedId.has(row.id.toString())
-								);
-								setSelectedRow(selectedRowData[0]);
-							}}
-							sx={{ height: 400, overflow: 'scroll' }}
-						/>
-					</Box>
-					{/* <Box
-						style={{
-							height: 450,
-							width: '100%',
-							backgroundColor: 'white',
-							borderRadius: '5px',
-							padding: '5px',
-						}}>
-						<Stack direction="row" spacing={1}>
-							<IconButton onClick={() => handleOpen('create', false)}>
-								<AddIcon />
-							</IconButton>
-							<IconButton onClick={handleBorrar}>
-								<RemoveIcon />
-							</IconButton>
-							<IconButton onClick={() => handleOpen('update', false)}>
-								<EditIcon />
-							</IconButton>
-							<IconButton onClick={RefreshPersons}>
-								<RefreshIcon />
-							</IconButton>
-						</Stack>
-						<DataGrid
-							rows={certificateRows}
-							columns={[
-								...columns,
-								{
-									field: 'url',
-									headerName: 'Url',
-									width: 150,
-								},
-							]}
-							pageSize={10}
-							rowsPerPageOptions={[10]}
-							onSelectionModelChange={(id) => {
-								const selectedId = new Set(id);
-								const selectedRowData = certificateRows.filter((row) =>
-									selectedId.has(row.id.toString())
-								);
-								setSelectedRow(selectedRowData[0]);
-							}}
-							sx={{ height: 400, overflow: 'scroll' }}
-						/>
-					</Box> */}
+					<AdministrationDataGrid
+						rows={rows}
+						columns={columns}
+						handleAddClick={handleAddClick}
+						handleEditClick={handleEditClick}
+						handleBorrar={handleCedulaDelete}
+						refreshData={RefreshPersons}
+						setSelectionModel={setSelectionModel}
+						selectionModel={selectionModel}
+						isTabCedula
+					/>
 					<AdministrationDataGrid
 						rows={certificateRows}
 						columns={[
@@ -386,10 +362,13 @@ export default function AdministrationView() {
 								width: 150,
 							},
 						]}
-						setSelectedRow={setSelectedRow}
-						handleOpen={handleOpen}
-						handleBorrar={handleBorrar}
+						handleAddClick={handleAddClick}
+						handleEditClick={handleCertificateEditClick}
+						handleBorrar={handleCertificateDelete}
 						refreshData={RefreshPersons}
+						isTabCedula={false}
+						setSelectionModel={setCertificateSelectionModel}
+						selectionModel={certificateSelectionModel}
 					/>
 				</AdministrationTabs>
 			</Container>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -10,9 +10,32 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import HomeIcon from '@mui/icons-material/Home';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import { FindAllPersons } from '../services/personService';
 
 export default function DigitalDocuments() {
+	const [folio, setFolio] = useState('');
+	const [url, setUrl] = useState('');
+	const [showUrl, setShowUrl] = useState(false);
 	const matchesWidth = useMediaQuery('(min-width:1170px)');
+
+	const onSearchHandler = () => {
+		setUrl('');
+		setShowUrl(false);
+		FindAllPersons().then((res) => {
+			var result = res.find((person) => person.folio === folio && person.url);
+			if (result) {
+				setUrl(result.url);
+				setShowUrl(true);
+			}
+		});
+	};
+
+	const onResetHandler = () => {
+		setUrl('');
+		setShowUrl(false);
+		setFolio('');
+	};
+
 	return (
 		<Box
 			sx={{
@@ -77,9 +100,8 @@ export default function DigitalDocuments() {
 									backgroundColor: 'rgb(225,225,225)',
 									width: '100%',
 								}}
-								// error={usuarioError}
-								// onChange={(e) => handleOnChangeUsuario(e.target.value)}
-								// value={usuario}
+								onChange={(e) => setFolio(e.target.value)}
+								value={folio}
 							/>
 							<Stack
 								direction={matchesWidth ? 'row' : 'column'}
@@ -94,14 +116,7 @@ export default function DigitalDocuments() {
 										fontSize: '18px',
 										fontFamily: 'Montserrat !important',
 									}}
-									// onClick={() =>
-									// 	onConsultarHandle({
-									// 		firstName: nombre,
-									// 		lastName: primerApellido,
-									// 		secondLastName: segundoApellido,
-									// 	})
-									// }
-								>
+									onClick={onSearchHandler}>
 									Buscar
 								</Button>
 								<Button
@@ -113,14 +128,7 @@ export default function DigitalDocuments() {
 										fontSize: '18px',
 										fontFamily: 'Montserrat !important',
 									}}
-									// onClick={() =>
-									// 	onConsultarHandle({
-									// 		firstName: nombre,
-									// 		lastName: primerApellido,
-									// 		secondLastName: segundoApellido,
-									// 	})
-									// }
-								>
+									onClick={onResetHandler}>
 									Restablecer
 								</Button>
 							</Stack>
@@ -191,6 +199,13 @@ export default function DigitalDocuments() {
 							Los certificados estarán disponibles para su consulta un día
 							después de su emisión.
 						</Container>
+						{showUrl ? (
+							<Link href={url} target="_blank">
+								Descargar
+							</Link>
+						) : (
+							<></>
+						)}
 					</Container>
 				</Box>
 			</div>
