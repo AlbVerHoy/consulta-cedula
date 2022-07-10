@@ -19,6 +19,7 @@ import {
 	FindAllPersons,
 } from '../services/personService';
 import AdministrationTabs from '../components/Administration/AdministrationTabs';
+import AdministrationDataGrid from '../components/Administration/AdministrationDataGrid';
 
 const style = {
 	position: 'absolute',
@@ -35,17 +36,18 @@ const style = {
 export default function AdministrationView() {
 	const matchesHeight = useMediaQuery('(min-height:550px)');
 	const [open, setOpen] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [secondLastName, setSecondLastName] = useState('');
-	const [folio, setFolio] = useState('');
-	const [enrolment, setEnrolment] = useState('');
-	const [career, setCareer] = useState('');
-	const [university, setUniversity] = useState('');
 	const [isCedula, setIsCedula] = useState(false);
 	const [rows, setRows] = useState([]);
-	const [selectedRow, setSelectedRow] = useState({});
+	const [certificateRows, setCertificateRows] = useState([]);
+	const [selectedRow, setSelectedRow] = useState({
+		firstName: '',
+		lastName: '',
+		secondLastName: '',
+		folio: '',
+		enrolment: '',
+		career: '',
+		university: '',
+	});
 	const [modalTitle, setModalTitle] = useState('Agregar Usuario');
 	const [modalButtonText, setModalButtonText] = useState('Agregar');
 
@@ -103,53 +105,48 @@ export default function AdministrationView() {
 
 	const RefreshPersons = () => {
 		FindAllPersons().then((res) => {
+			setRows([]);
+			setCertificateRows([]);
 			if (!res) return;
-			res.map((person) => (person.id = person.folio));
-			setRows(res);
+			res.forEach((person) => {
+				if (!person.url) {
+					setRows((oldRows) => [...oldRows, person]);
+				} else {
+					setCertificateRows((oldCertificateRows) => [
+						...oldCertificateRows,
+						person,
+					]);
+				}
+				person.id = person.firstName + person.folio;
+			});
 		});
 	};
 
 	const handleAgregar = async () => {
-		setIsLoading(true);
 		setOpen(false);
-		const person =
-			modalButtonText === 'Actualizar'
-				? selectedRow
-				: {
-						firstName,
-						lastName,
-						secondLastName,
-						folio,
-						enrolment,
-						career,
-						university,
-				  };
-		CreatePerson(person).then(() => {
+		CreatePerson(selectedRow).then(() => {
 			RefreshPersons();
 		});
-		setFirstName('');
-		setLastName('');
-		setSecondLastName('');
-		setFolio('');
-		setCareer('');
-		setEnrolment('');
-		setUniversity('');
-		//setSelectedRow({});
-		setIsLoading(false);
+		setSelectedRow({
+			firstName: '',
+			lastName: '',
+			secondLastName: '',
+			folio: '',
+			enrolment: '',
+			career: '',
+			university: '',
+		});
 	};
 
 	const handleBorrar = async () => {
 		if (Object.entries(selectedRow).length === 0) return;
-		setIsLoading(true);
 		DeletePerson(selectedRow).then(() => {
 			RefreshPersons();
 		});
-		setIsLoading(false);
 	};
 
 	useEffect(() => {
 		RefreshPersons();
-		setIsLoading(false);
 	}, []);
 
 	return (
@@ -177,126 +174,84 @@ export default function AdministrationView() {
 							id="outlined-basic"
 							label="Nombre(s)"
 							variant="outlined"
-							defaultValue={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.firstName
-									: firstName
-							}
+							defaultValue={selectedRow.firstName}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											firstName: e.target.value,
-									  }))
-									: setFirstName(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									firstName: e.target.value,
+								}))
 							}
 						/>
 						<TextField
 							id="outlined-basic"
 							label="Primer Apellido"
 							variant="outlined"
-							value={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.lastName
-									: lastName
-							}
+							value={selectedRow.lastName}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											lastName: e.target.value,
-									  }))
-									: setLastName(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									lastName: e.target.value,
+								}))
 							}
 						/>
 						<TextField
 							id="outlined-basic"
 							label="Segundo Apellido"
 							variant="outlined"
-							value={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.secondLastName
-									: secondLastName
-							}
+							value={selectedRow.secondLastName}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											secondLastName: e.target.value,
-									  }))
-									: setSecondLastName(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									secondLastName: e.target.value,
+								}))
 							}
 						/>
 						<TextField
 							id="outlined-basic"
 							label="Folio"
 							variant="outlined"
-							value={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.folio
-									: folio
-							}
+							value={selectedRow.folio}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											folio: e.target.value,
-									  }))
-									: setFolio(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									folio: e.target.value,
+								}))
 							}
 						/>
 						<TextField
 							id="outlined-basic"
 							label="Inscripción"
 							variant="outlined"
-							value={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.enrolment
-									: enrolment
-							}
+							value={selectedRow.enrolment}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											enrolment: e.target.value,
-									  }))
-									: setEnrolment(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									enrolment: e.target.value,
+								}))
 							}
 						/>
 						<TextField
 							id="outlined-basic"
 							label="Carrera"
 							variant="outlined"
-							value={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.career
-									: career
-							}
+							value={selectedRow.career}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											career: e.target.value,
-									  }))
-									: setCareer(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									career: e.target.value,
+								}))
 							}
 						/>
 						<TextField
 							id="outlined-basic"
 							label="Universidad"
 							variant="outlined"
-							value={
-								modalButtonText === 'Actualizar' && selectedRow
-									? selectedRow.university
-									: university
-							}
+							value={selectedRow.university}
 							onChange={(e) =>
-								modalButtonText === 'Actualizar'
-									? setSelectedRow((prevState) => ({
-											...prevState,
-											university: e.target.value,
-									  }))
-									: setUniversity(e.target.value)
+								setSelectedRow((prevState) => ({
+									...prevState,
+									university: e.target.value,
+								}))
 							}
 						/>
 						{!isCedula ? (
@@ -304,18 +259,12 @@ export default function AdministrationView() {
 								id="outlined-basic"
 								label="Url"
 								variant="outlined"
-								value={
-									modalButtonText === 'Actualizar' && selectedRow
-										? selectedRow.university
-										: university
-								}
+								value={selectedRow.url}
 								onChange={(e) =>
-									modalButtonText === 'Actualizar'
-										? setSelectedRow((prevState) => ({
-												...prevState,
-												university: e.target.value,
-										  }))
-										: setUniversity(e.target.value)
+									setSelectedRow((prevState) => ({
+										...prevState,
+										url: e.target.value,
+									}))
 								}
 							/>
 						) : (
@@ -369,7 +318,6 @@ export default function AdministrationView() {
 							</IconButton>
 						</Stack>
 						<DataGrid
-							loading={isLoading}
 							rows={rows}
 							columns={columns}
 							pageSize={10}
@@ -384,7 +332,7 @@ export default function AdministrationView() {
 							sx={{ height: 400, overflow: 'scroll' }}
 						/>
 					</Box>
-					<Box
+					{/* <Box
 						style={{
 							height: 450,
 							width: '100%',
@@ -407,8 +355,7 @@ export default function AdministrationView() {
 							</IconButton>
 						</Stack>
 						<DataGrid
-							loading={isLoading}
-							rows={[]}
+							rows={certificateRows}
 							columns={[
 								...columns,
 								{
@@ -421,14 +368,29 @@ export default function AdministrationView() {
 							rowsPerPageOptions={[10]}
 							onSelectionModelChange={(id) => {
 								const selectedId = new Set(id);
-								const selectedRowData = rows.filter((row) =>
+								const selectedRowData = certificateRows.filter((row) =>
 									selectedId.has(row.id.toString())
 								);
 								setSelectedRow(selectedRowData[0]);
 							}}
 							sx={{ height: 400, overflow: 'scroll' }}
 						/>
-					</Box>
+					</Box> */}
+					<AdministrationDataGrid
+						rows={certificateRows}
+						columns={[
+							...columns,
+							{
+								field: 'url',
+								headerName: 'Url',
+								width: 150,
+							},
+						]}
+						setSelectedRow={setSelectedRow}
+						handleOpen={handleOpen}
+						handleBorrar={handleBorrar}
+						refreshData={RefreshPersons}
+					/>
 				</AdministrationTabs>
 			</Container>
 		</Box>
